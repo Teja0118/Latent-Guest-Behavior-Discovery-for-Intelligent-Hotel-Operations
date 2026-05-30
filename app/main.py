@@ -2,6 +2,8 @@ from preprocessing.data_loader import DataLoader
 from preprocessing.dataset_inspector import DatasetInspector
 from preprocessing.data_preprocessor import DataPreprocessor
 from preprocessing.eda_analyzer import EDAAnalyzer
+from clustering.feature_selector import FeatureSelector
+from clustering.train_clustering import ClusteringTrainer
 
 
 def main():
@@ -39,7 +41,19 @@ def main():
         eda_analyzer.operational_metrics_analysis()
         eda_analyzer.categorical_feature_analysis()
 
+        # Feature Selection and Clustering
+        feature_selector = FeatureSelector(preprocessed_df)
+        
+        clustering_df = (
+            feature_selector.get_clustering_features()
+        )
 
+        clustering_trainer = ClusteringTrainer(
+            clustering_df
+        )
+
+        clustering_trainer.elbow_method()
+        clustering_trainer.silhouette_method()
 
         '''
         print("Dataset Shape: ")
