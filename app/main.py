@@ -4,6 +4,7 @@ from preprocessing.data_preprocessor import DataPreprocessor
 from preprocessing.eda_analyzer import EDAAnalyzer
 from clustering.feature_selector import FeatureSelector
 from clustering.train_clustering import ClusteringTrainer
+from clustering.cluster_analyzer import ClusterAnalyzer
 
 
 def main():
@@ -53,7 +54,28 @@ def main():
         )
 
         clustering_trainer.elbow_method()
-        clustering_trainer.silhouette_method()
+        clustering_trainer.silhouette_analysis()
+
+        cluster_labels = (
+            clustering_trainer.train_final_model(
+                n_clusters=5
+            )
+        )
+
+        clustering_trainer.save_model(
+            "models/kmeans_guest_clustering_model.pkl"
+        )
+
+        cluster_analyzer = ClusterAnalyzer(
+            clustering_df,
+            cluster_labels
+        )
+
+        cluster_analyzer.analyze_clusters()
+
+        cluster_analyzer.save_clustered_dataset(
+            "data/clustered_hospitality_operations.csv"
+        )
 
         '''
         print("Dataset Shape: ")

@@ -1,3 +1,4 @@
+import joblib
 import matplotlib.pyplot as plt
 
 from sklearn.cluster import KMeans
@@ -7,6 +8,7 @@ class ClusteringTrainer:
 
     def __init__(self, dataframe):
         self.dataframe = dataframe
+        self.model = None
 
     def elbow_method(self):
 
@@ -42,7 +44,7 @@ class ClusteringTrainer:
         except Exception as error:
             print(f"Error during elbow method: {error}")
     
-    def silhouette_method(self):
+    def silhouette_analysis(self):
         try:
             print("\nSilhouette Scores:\n")
 
@@ -67,3 +69,40 @@ class ClusteringTrainer:
                 )
         except Exception as error:
             print(f"Error during silhouette method: {error}")
+        
+    def train_final_model(self, n_clusters=5):
+        try:
+            self.model = KMeans(
+                n_clusters=n_clusters,
+                random_state=42,
+                n_init=10
+            )
+
+            cluster_labels = self.model.fit_predict(
+                self.dataframe
+            )
+
+            print(
+                f"\nFinal KMeans model trained "
+                f"successfully with K = {n_clusters}"
+            )
+
+            return cluster_labels
+        
+        except Exception as error:
+            print(f"Error while training final model: {error}")
+
+    def save_model(self, output_path):
+        try:
+            joblib.dump(
+                self.model,
+                output_path
+            )
+
+            print(
+                f"\nClustering model saved successfully at: \n"
+                f"{output_path}"
+            )
+        
+        except Exception as error:
+            print(f"Error while saving model: {error}")
