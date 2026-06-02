@@ -5,6 +5,8 @@ from preprocessing.eda_analyzer import EDAAnalyzer
 from clustering.feature_selector import FeatureSelector
 from clustering.train_clustering import ClusteringTrainer
 from clustering.cluster_analyzer import ClusterAnalyzer
+from association_rules.transaction_builder import TransactionBuilder
+from association_rules.association_analysis import AssociationAnalyzer
 
 
 def main():
@@ -19,12 +21,14 @@ def main():
         print("Dataset Loaded Successfully!\n")
 
         # Inspect Data
+        '''
         inspector = DatasetInspector(df)
         inspector.dataset_info()
         inspector.check_missing_values()
         inspector.check_duplicate_rows()
         inspector.seperate_feature_types()
         inspector.statistical_summary()
+        '''
 
         # Preprocess Data
         preprocessor = DataPreprocessor(df)
@@ -35,14 +39,17 @@ def main():
 
         # Perform EDA 
         preprocessed_df = preprocessor.get_processed_dataframe()
+        '''
         eda_analyzer = EDAAnalyzer(preprocessed_df)
         eda_analyzer.correlation_heatmap()
         eda_analyzer.spending_distribution_analysis()
         eda_analyzer.service_usage_analysis()
         eda_analyzer.operational_metrics_analysis()
         eda_analyzer.categorical_feature_analysis()
+        '''
 
         # Feature Selection and Clustering
+        '''
         feature_selector = FeatureSelector(preprocessed_df)
         
         clustering_df = (
@@ -52,10 +59,9 @@ def main():
         clustering_trainer = ClusteringTrainer(
             clustering_df
         )
-
         clustering_trainer.elbow_method()
         clustering_trainer.silhouette_analysis()
-
+        
         cluster_labels = (
             clustering_trainer.train_final_model(
                 n_clusters=5
@@ -76,6 +82,17 @@ def main():
         cluster_analyzer.save_clustered_dataset(
             "data/clustered_hospitality_operations.csv"
         )
+        '''
+
+        # Association Rule
+        transaction_builder = TransactionBuilder(df)
+        transaction_df = (
+            transaction_builder.build_transactions()
+        )
+        association_analyzer = AssociationAnalyzer(
+            transaction_df
+        )
+        association_analyzer.discover_patterns()
 
         '''
         print("Dataset Shape: ")

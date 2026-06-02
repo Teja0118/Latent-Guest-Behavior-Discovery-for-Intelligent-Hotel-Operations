@@ -36,7 +36,7 @@ class DataPreprocessor:
 
         try:
             categorical_columns = self.dataframe.select_dtypes(
-                include=['object']
+                include=['object', 'string']
             ).columns
 
             for column in categorical_columns:
