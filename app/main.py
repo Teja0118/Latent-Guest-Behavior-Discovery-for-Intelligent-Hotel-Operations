@@ -7,6 +7,9 @@ from clustering.train_clustering import ClusteringTrainer
 from clustering.cluster_analyzer import ClusterAnalyzer
 from association_rules.transaction_builder import TransactionBuilder
 from association_rules.association_analysis import AssociationAnalyzer
+from recommendations.recommendation_engine import RecommendationEngine
+from recommendations.operational_insights import OperationalInsights
+import pandas as pd
 
 
 def main():
@@ -19,6 +22,9 @@ def main():
         df = data_loader.load_dataset()
 
         print("Dataset Loaded Successfully!\n")
+        clustered_df = pd.read_csv(
+            "data/clustered_hospitality_operations.csv"
+        )
 
         # Inspect Data
         '''
@@ -28,7 +34,7 @@ def main():
         inspector.check_duplicate_rows()
         inspector.seperate_feature_types()
         inspector.statistical_summary()
-        '''
+        
 
         # Preprocess Data
         preprocessor = DataPreprocessor(df)
@@ -39,7 +45,7 @@ def main():
 
         # Perform EDA 
         preprocessed_df = preprocessor.get_processed_dataframe()
-        '''
+        
         eda_analyzer = EDAAnalyzer(preprocessed_df)
         eda_analyzer.correlation_heatmap()
         eda_analyzer.spending_distribution_analysis()
@@ -93,6 +99,18 @@ def main():
             transaction_df
         )
         association_analyzer.discover_patterns()
+
+        recommendation_engine = RecommendationEngine(
+            clustered_df
+        )
+
+        recommendation_engine.generate_cluster_recommendations()
+
+        operational_insights = OperationalInsights(
+            clustered_df
+        )
+
+        operational_insights.generate_operational_insights()
 
         '''
         print("Dataset Shape: ")
