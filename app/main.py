@@ -1,131 +1,43 @@
-from preprocessing.data_loader import DataLoader
-from preprocessing.dataset_inspector import DatasetInspector
-from preprocessing.data_preprocessor import DataPreprocessor
-from preprocessing.eda_analyzer import EDAAnalyzer
-from clustering.feature_selector import FeatureSelector
-from clustering.train_clustering import ClusteringTrainer
-from clustering.cluster_analyzer import ClusterAnalyzer
-from association_rules.transaction_builder import TransactionBuilder
-from association_rules.association_analysis import AssociationAnalyzer
-from recommendations.recommendation_engine import RecommendationEngine
-from recommendations.operational_insights import OperationalInsights
-import pandas as pd
+from fastapi import FastAPI
 
+from fastapi.staticfiles import StaticFiles
 
-def main():
-    try:
-        dataset_path = "data/hospitality_operations_03.csv"
-        processed_dataset_path = "data/processed_hospitality_operations.csv"
+from fastapi.templating import Jinja2Templates
 
-        # Loading Data
-        data_loader = DataLoader(dataset_path)
-        df = data_loader.load_dataset()
+from fastapi.requests import Request
 
-        print("Dataset Loaded Successfully!\n")
-        clustered_df = pd.read_csv(
-            "data/clustered_hospitality_operations.csv"
-        )
+from api.routes.prediction_routes import (
+    router as prediction_router
+)
 
-        # Inspect Data
-        '''
-        inspector = DatasetInspector(df)
-        inspector.dataset_info()
-        inspector.check_missing_values()
-        inspector.check_duplicate_rows()
-        inspector.seperate_feature_types()
-        inspector.statistical_summary()
-        
+app = FastAPI(
+    title="Hotel Guest Behavior Intelligence"
+)
 
-        # Preprocess Data
-        preprocessor = DataPreprocessor(df)
-        preprocessor.drop_unnecessary_columns()
-        preprocessor.encode_categorical_features()
-        preprocessor.scale_numerical_features()
-        preprocessor.save_processed_dataset(processed_dataset_path) 
+# Static Files
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
+)
 
-        # Perform EDA 
-        preprocessed_df = preprocessor.get_processed_dataframe()
-        
-        eda_analyzer = EDAAnalyzer(preprocessed_df)
-        eda_analyzer.correlation_heatmap()
-        eda_analyzer.spending_distribution_analysis()
-        eda_analyzer.service_usage_analysis()
-        eda_analyzer.operational_metrics_analysis()
-        eda_analyzer.categorical_feature_analysis()
-        '''
+# Templates
+templates = Jinja2Templates(
+    directory="templates"
+)
 
-        # Feature Selection and Clustering
-        '''
-        feature_selector = FeatureSelector(preprocessed_df)
-        
-        clustering_df = (
-            feature_selector.get_clustering_features()
-        )
+# API Routes
+app.include_router(
+    prediction_router
+)
 
-        clustering_trainer = ClusteringTrainer(
-            clustering_df
-        )
-        clustering_trainer.elbow_method()
-        clustering_trainer.silhouette_analysis()
-        
-        cluster_labels = (
-            clustering_trainer.train_final_model(
-                n_clusters=5
-            )
-        )
+# Frontend Route
+@app.get("/")
+def home(
+    request: Request
+):
 
-        clustering_trainer.save_model(
-            "models/kmeans_guest_clustering_model.pkl"
-        )
-
-        cluster_analyzer = ClusterAnalyzer(
-            clustering_df,
-            cluster_labels
-        )
-
-        cluster_analyzer.analyze_clusters()
-
-        cluster_analyzer.save_clustered_dataset(
-            "data/clustered_hospitality_operations.csv"
-        )
-        '''
-
-        # Association Rule
-        transaction_builder = TransactionBuilder(df)
-        transaction_df = (
-            transaction_builder.build_transactions()
-        )
-        association_analyzer = AssociationAnalyzer(
-            transaction_df
-        )
-        association_analyzer.discover_patterns()
-
-        recommendation_engine = RecommendationEngine(
-            clustered_df
-        )
-
-        recommendation_engine.generate_cluster_recommendations()
-
-        operational_insights = OperationalInsights(
-            clustered_df
-        )
-
-        operational_insights.generate_operational_insights()
-
-        '''
-        print("Dataset Shape: ")
-        print(df.shape)
-
-        print("First 5 Rows: ")
-        print(df.head())
-
-        print("Column Names: ")
-        print(df.columns.tolist())
-        '''
-        
-
-    except Exception as error:
-        print(f"\nApplication Error: {error}")
-
-if __name__ == "__main__":
-    main()
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html"
+    )

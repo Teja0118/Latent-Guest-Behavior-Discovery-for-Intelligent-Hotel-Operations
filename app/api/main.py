@@ -1,3 +1,4 @@
+'''
 from fastapi import FastAPI
 
 from api.routes.prediction_routes import (
@@ -19,3 +20,4 @@ def root():
             "Hotel Guest Behavior API Running"
         )
     }
+'''

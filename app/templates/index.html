@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Hotel Guest Behavior Intelligence
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>
+            Hotel Guest Behavior Intelligence
+        </h1>
+
+        <div class="form-container">
+
+            <input
+                type="number"
+                id="restaurant_visits"
+                placeholder="Restaurant Visits"
+            >
+
+            <input
+                type="number"
+                id="restaurant_spend_usd"
+                placeholder="Restaurant Spend USD"
+            >
+
+            <input
+                type="number"
+                id="spa_treatments_count"
+                placeholder="Spa Treatments Count"
+            >
+
+            <input
+                type="number"
+                id="spa_spend_usd"
+                placeholder="Spa Spend USD"
+            >
+
+            <input
+                type="number"
+                id="gym_checkins_count"
+                placeholder="Gym Checkins Count"
+            >
+
+            <input
+                type="number"
+                id="activity_bookings_count"
+                placeholder="Activity Bookings Count"
+            >
+
+            <input
+                type="number"
+                id="concierge_requests_count"
+                placeholder="Concierge Requests Count"
+            >
+
+            <input
+                type="number"
+                id="transport_requests_count"
+                placeholder="Transport Requests Count"
+            >
+
+            <input
+                type="number"
+                id="laundry_requests_count"
+                placeholder="Laundry Requests Count"
+            >
+
+            <input
+                type="number"
+                id="kids_club_sessions"
+                placeholder="Kids Club Sessions"
+            >
+
+            <button onclick="predictCluster()">
+                Predict Guest Archetype
+            </button>
+
+        </div>
+
+        <div
+            id="result-container"
+            class="result-container"
+        >
+
+        </div>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
