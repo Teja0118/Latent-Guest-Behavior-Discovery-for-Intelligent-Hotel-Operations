@@ -16,11 +16,19 @@ async function predictCluster() {
                 ).value
             ) || 0,
 
-        room_service_orders: 0,
-        room_service_spend_usd: 0,
+        room_service_orders:
+            parseFloat(
+                document.getElementById(
+                    "room_service_orders"
+                ).value
+            ) || 0,
 
-        bar_lounge_visits: 0,
-        minibar_charges_usd: 0,
+        bar_lounge_visits:
+            parseFloat(
+                document.getElementById(
+                    "bar_lounge_visits"
+                ).value
+            ) || 0,
 
         spa_treatments_count:
             parseFloat(
@@ -43,7 +51,12 @@ async function predictCluster() {
                 ).value
             ) || 0,
 
-        pool_beach_visits_count: 0,
+        pool_beach_visits_count:
+            parseFloat(
+                document.getElementById(
+                    "pool_beach_visits_count"
+                ).value
+            ) || 0,
 
         activity_bookings_count:
             parseFloat(
@@ -52,8 +65,6 @@ async function predictCluster() {
                 ).value
             ) || 0,
 
-        activity_spend_usd: 0,
-
         kids_club_sessions:
             parseFloat(
                 document.getElementById(
@@ -61,7 +72,19 @@ async function predictCluster() {
                 ).value
             ) || 0,
 
-        tour_bookings_count: 0,
+        tour_bookings_count:
+            parseFloat(
+                document.getElementById(
+                    "tour_bookings_count"
+                ).value
+            ) || 0,
+
+        business_center_hours:
+            parseFloat(
+                document.getElementById(
+                    "business_center_hours"
+                ).value
+            ) || 0,
 
         concierge_requests_count:
             parseFloat(
@@ -84,23 +107,19 @@ async function predictCluster() {
                 ).value
             ) || 0,
 
-        special_requests_count: 0,
+        special_requests_count:
+            parseFloat(
+                document.getElementById(
+                    "special_requests_count"
+                ).value
+            ) || 0,
 
-        in_room_entertainment_hours: 0,
-
-        gift_shop_spend_usd: 0,
-
-        business_center_hours: 0,
-
-        extra_housekeeping_requests: 0,
-
-        avg_service_response_minutes: 0,
-
-        maintenance_calls_count: 0,
-
-        checkin_wait_minutes: 0,
-
-        service_complaint_count: 0
+        service_complaint_count:
+            parseFloat(
+                document.getElementById(
+                    "service_complaint_count"
+                ).value
+            ) || 0
     };
 
     try {
@@ -157,6 +176,11 @@ function displayResult(data) {
         <p>
             <strong>Cluster Name:</strong>
             ${data.cluster_name}
+        </p>
+
+        <p>
+            <strong>Confidence:</strong>
+            ${data.cluster_confidence}%
         </p>
 
         <h3>

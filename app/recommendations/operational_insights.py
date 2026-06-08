@@ -1,71 +1,110 @@
 import pandas as pd
 
+
 class OperationalInsights:
-    def __init__(self, clustered_dataframe: pd.DataFrame):
-        self.dataframe = clustered_dataframe
+
+    def __init__(
+        self,
+        clustered_dataframe: pd.DataFrame
+    ):
+
+        self.clustered_dataframe = (
+            clustered_dataframe.copy()
+        )
 
     def generate_operational_insights(self):
+
         try:
-            print("\nOperational Intelligence Insights:\n")
-            cluster_summary = self.dataframe.groupby(
-                "guest_cluster"
-            ).mean()
-            for cluster_id in cluster_summary.index:
-                print(f"\nCluster {cluster_id}: \n")
-                if(
-                    cluster_summary.loc[
-                        cluster_id,
-                        "concierge_requests_count"
-                    ] > 0
-                ):
-                    print("- Increase concierge staffing.")
-                
-                if (
-                    cluster_summary.loc[
-                        cluster_id,
-                        "spa_treatments_count"
-                    ] > 0
-                ):
+
+            numerical_columns = (
+
+                self.clustered_dataframe.select_dtypes(
+
+                    include=[
+                        "int64",
+                        "float64"
+                    ]
+
+                ).columns
+            )
+
+            numerical_columns = [
+
+                column
+                for column in numerical_columns
+                if column != "guest_cluster"
+            ]
+
+            cluster_summary = (
+
+                self.clustered_dataframe.groupby(
+                    "guest_cluster"
+                )[numerical_columns].mean()
+
+            )
+
+            print(
+                "\nOperational Intelligence "
+                "Insights:\n"
+            )
+
+            for cluster_id, row in (
+                cluster_summary.iterrows()
+            ):
+
+                print(
+                    f"\nCluster {cluster_id}: \n"
+                )
+
+                if row.get(
+                    "concierge_requests_count",
+                    0
+                ) > 2:
+
+                    print(
+                        "- Increase concierge staffing."
+                    )
+
+                if row.get(
+                    "spa_treatments_count",
+                    0
+                ) > 2:
 
                     print(
                         "- Increase spa staff allocation."
                     )
 
-                if (
-                    cluster_summary.loc[
-                        cluster_id,
-                        "transport_requests_count"
-                    ] > 0
-                ):
+                if row.get(
+                    "transport_requests_count",
+                    0
+                ) > 2:
 
                     print(
                         "- Improve transport availability."
                     )
 
-                if (
-                    cluster_summary.loc[
-                        cluster_id,
-                        "kids_club_sessions"
-                    ] > 0
-                ):
+                if row.get(
+                    "service_complaint_count",
+                    0
+                ) > 1:
+
+                    print(
+                        "- Improve customer service response."
+                    )
+
+                if row.get(
+                    "kids_club_sessions",
+                    0
+                ) > 3:
 
                     print(
                         "- Increase kids club resources."
                     )
 
-                if (
-                    cluster_summary.loc[
-                        cluster_id,
-                        "service_complaint_count"
-                    ] > 0
-                ):
-
-                    print(
-                        "- Improve customer service response."
-                    )
         except Exception as error:
+
             print(
-                f"Error while generating operational insights: "
+                f"Error while generating "
+                f"operational insights: "
                 f"{error}"
             )
-                

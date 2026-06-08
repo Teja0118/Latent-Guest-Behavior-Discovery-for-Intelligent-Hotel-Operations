@@ -1,49 +1,88 @@
 from fastapi import APIRouter
 
-from api.schemas.guest_input_schema import GuestInputSchema
-from api.services.prediction_service import PredictionService
-from api.services.recommendation_service import RecommendationService
-from api.services.operational_service import OperationalService
+from api.schemas.guest_input_schema import (
+    GuestInputSchema
+)
+
+from api.services.prediction_service import (
+    PredictionService
+)
+
+from api.services.recommendation_service import (
+    RecommendationService
+)
+
+from api.services.operational_service import (
+    OperationalService
+)
+
 
 router = APIRouter()
 
 prediction_service = PredictionService()
-recommendation_service = RecommendationService()
-operational_service = OperationalService()
+
+recommendation_service = (
+    RecommendationService()
+)
+
+operational_service = (
+    OperationalService()
+)
 
 
 @router.post("/predict-cluster")
-def predict_cluster(guest_input: GuestInputSchema):
-    
-    cluster_prediction = prediction_service.predict_cluster(
-        guest_input.model_dump()
+def predict_cluster(
+    guest_data: GuestInputSchema
+):
+
+    prediction_result = (
+        prediction_service.predict_cluster(
+            guest_data.dict()
+        )
+    )
+
+    cluster_id = (
+        prediction_result["cluster_id"]
+    )
+
+    confidence = (
+        prediction_result[
+            "cluster_confidence"
+        ]
     )
 
     cluster_details = (
-        recommendation_service.get_cluster_details(
-            cluster_prediction
+        recommendation_service
+        .get_cluster_details(
+            cluster_id
         )
     )
 
     operational_insights = (
-        operational_service.get_operational_insights(
-            cluster_prediction
+        operational_service
+        .get_operational_insights(
+            cluster_id
         )
     )
 
     return {
 
-        "predicted_cluster": cluster_prediction,
+        "predicted_cluster":
+            cluster_id,
 
-        "cluster_name": (
-            cluster_details["cluster_name"]
-        ),
+        "cluster_confidence":
+            confidence,
 
-        "recommendations": (
-            cluster_details["recommendations"]
-        ),
+        "cluster_name":
+            cluster_details[
+                "cluster_name"
+            ],
 
-        "operational_insights": (
+        "recommendations":
+            cluster_details[
+                "recommendations"
+            ],
+
+        "operational_insights":
             operational_insights
-        )
     }

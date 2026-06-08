@@ -2,29 +2,48 @@ class OperationalService:
 
     OPERATIONAL_INSIGHTS = {
 
+        # Family Dining Guests
+
         0: [
-            "Maintain strong dining operations.",
-            "Optimize leisure service staffing."
+
+            "Increase kids club staffing.",
+
+            "Improve restaurant capacity management.",
+
+            "Enhance family activity coordination."
         ],
+
+        # Budget Minimal Guests
 
         1: [
-            "Increase spa staff allocation.",
-            "Improve wellness service capacity."
+
+            "Reduce operational costs for low-engagement guests.",
+
+            "Maintain efficient basic service operations.",
+
+            "Improve customer support response."
         ],
+
+        # Business Leisure Guests
 
         2: [
-            "Improve transport availability.",
-            "Increase laundry service efficiency."
+
+            "Improve concierge availability.",
+
+            "Improve airport transport coordination.",
+
+            "Enhance business support services."
         ],
+
+        # Luxury Wellness Guests
 
         3: [
-            "Improve customer support response.",
-            "Reduce check-in waiting times."
-        ],
 
-        4: [
-            "Increase kids club staffing.",
-            "Improve family activity scheduling."
+            "Increase spa staff allocation.",
+
+            "Improve premium wellness experience.",
+
+            "Enhance luxury guest engagement services."
         ]
     }
 
@@ -34,6 +53,8 @@ class OperationalService:
     ):
 
         return self.OPERATIONAL_INSIGHTS.get(
+
             cluster_id,
+
             []
         )

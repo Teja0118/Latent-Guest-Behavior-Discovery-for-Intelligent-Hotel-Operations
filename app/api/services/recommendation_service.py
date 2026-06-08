@@ -2,48 +2,71 @@ class RecommendationService:
 
     CLUSTER_DETAILS = {
 
+        # Family + Dining Guests
+
         0: {
-            "cluster_name": "Dining & Leisure Guests",
+
+            "cluster_name":
+                "Family Dining Guests",
+
             "recommendations": [
-                "Premium Dining Package",
-                "Weekend Leisure Offer",
+
+                "Family Fun Package",
+
+                "Kids Club Access",
+
                 "Restaurant Loyalty Rewards"
             ]
         },
 
+        # Budget / Minimal Guests
+
         1: {
-            "cluster_name": "Wellness Guests",
+
+            "cluster_name":
+                "Budget Minimal Guests",
+
             "recommendations": [
-                "Luxury Wellness Retreat",
-                "Spa & Gym Combo",
-                "Poolside Relaxation Package"
+
+                "Budget-Friendly Stay",
+
+                "Express Service Experience",
+
+                "Seasonal Discount Offers"
             ]
         },
 
+        # Business + Mixed Guests
+
         2: {
-            "cluster_name": "Business Travelers",
+
+            "cluster_name":
+                "Business Leisure Guests",
+
             "recommendations": [
+
                 "Business Travel Package",
+
                 "Airport Transfer Service",
+
                 "Laundry Express Service"
             ]
         },
 
-        3: {
-            "cluster_name": "Minimal-Service Guests",
-            "recommendations": [
-                "Customer Recovery Offer",
-                "Fast Check-in Upgrade",
-                "Service Experience Improvement"
-            ]
-        },
+        # Luxury Wellness Guests
 
-        4: {
-            "cluster_name": "Family Leisure Guests",
+        3: {
+
+            "cluster_name":
+                "Luxury Wellness Guests",
+
             "recommendations": [
-                "Family Fun Package",
-                "Kids Club Access",
-                "Adventure Activity Bundle"
+
+                "Luxury Wellness Retreat",
+
+                "Spa & Gym Combo",
+
+                "Poolside Relaxation Package"
             ]
         }
     }
@@ -54,9 +77,14 @@ class RecommendationService:
     ):
 
         return self.CLUSTER_DETAILS.get(
+
             cluster_id,
+
             {
-                "cluster_name": "Unknown Cluster",
+
+                "cluster_name":
+                    "Unknown Cluster",
+
                 "recommendations": []
             }
         )

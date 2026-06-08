@@ -15,8 +15,9 @@ import pandas as pd
 def main():
     try:
         dataset_path = "data/hospitality_operations_03.csv"
-        processed_dataset_path = "data/processed_hospitality_operations.csv"
-
+        processed_dataset_path = (
+            "data/processed_hospitality_operations.csv"
+        )
         # Loading Data
         data_loader = DataLoader(dataset_path)
         df = data_loader.load_dataset()
@@ -27,7 +28,7 @@ def main():
         )
 
         # Inspect Data
-        '''
+        
         inspector = DatasetInspector(df)
         inspector.dataset_info()
         inspector.check_missing_values()
@@ -42,21 +43,30 @@ def main():
         preprocessor.encode_categorical_features()
         preprocessor.scale_numerical_features()
         preprocessor.save_processed_dataset(processed_dataset_path) 
+        preprocessor.save_scaler("models/scaler.pkl")
+        preprocessor.save_label_encoders("models/label_encoders.pkl")
+        
 
         # Perform EDA 
         preprocessed_df = preprocessor.get_processed_dataframe()
-        
+        print(f"\nPreprocessed Dataset columns: \n {preprocessed_df.columns.tolist()}")
         eda_analyzer = EDAAnalyzer(preprocessed_df)
         eda_analyzer.correlation_heatmap()
         eda_analyzer.spending_distribution_analysis()
         eda_analyzer.service_usage_analysis()
         eda_analyzer.operational_metrics_analysis()
         eda_analyzer.categorical_feature_analysis()
-        '''
+        
 
         # Feature Selection and Clustering
-        '''
-        feature_selector = FeatureSelector(preprocessed_df)
+        
+        original_df = (
+            preprocessor.get_original_dataframe()
+        )
+
+        feature_selector = FeatureSelector(
+            original_df
+        )
         
         clustering_df = (
             feature_selector.get_clustering_features()
@@ -65,17 +75,21 @@ def main():
         clustering_trainer = ClusteringTrainer(
             clustering_df
         )
-        clustering_trainer.elbow_method()
+
+        clustering_trainer.save_preprocessor(
+            "models/clustering_preprocessor.pkl"
+        )
+        # clustering_trainer.elbow_method()
         clustering_trainer.silhouette_analysis()
         
         cluster_labels = (
             clustering_trainer.train_final_model(
-                n_clusters=5
+                n_clusters=4
             )
         )
 
         clustering_trainer.save_model(
-            "models/kmeans_guest_clustering_model.pkl"
+            "models/gmm_guest_clustering_model.pkl"
         )
 
         cluster_analyzer = ClusterAnalyzer(
@@ -88,7 +102,7 @@ def main():
         cluster_analyzer.save_clustered_dataset(
             "data/clustered_hospitality_operations.csv"
         )
-        '''
+        
 
         # Association Rule
         transaction_builder = TransactionBuilder(df)
