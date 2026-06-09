@@ -2,20 +2,24 @@ body {
 
     font-family: Arial, sans-serif;
 
-    background-color: #f5f5f5;
+    background-color: #f4f7fb;
 
     margin: 0;
 
     padding: 0;
+
 }
 
 .container {
 
-    width: 70%;
+    width: 90%;
+
+    max-width: 1200px;
 
     margin: auto;
 
-    margin-top: 40px;
+    padding: 30px 0;
+
 }
 
 h1 {
@@ -23,56 +27,153 @@ h1 {
     text-align: center;
 
     margin-bottom: 30px;
+
+    color: #1e293b;
+
 }
 
 .form-container {
 
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
 
     gap: 15px;
 
-    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 
-    padding: 20px;
+}
 
-    border-radius: 10px;
+h2 {
+
+    grid-column: 1 / -1;
+
+    color: #2563eb;
+
+    margin-top: 15px;
+
 }
 
 input {
 
     padding: 12px;
 
-    font-size: 16px;
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+}
+
+input:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
 }
 
 button {
 
+    grid-column: 1 / -1;
+
     padding: 15px;
 
-    font-size: 16px;
-
-    cursor: pointer;
-
-    grid-column: span 2;
-
-    background-color: #007bff;
+    background: #2563eb;
 
     color: white;
 
     border: none;
 
-    border-radius: 5px;
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+button:hover {
+
+    background: #1d4ed8;
+
 }
 
 .result-container {
 
     margin-top: 30px;
 
-    background-color: white;
+    background: white;
 
-    padding: 20px;
+    padding: 25px;
 
-    border-radius: 10px;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+
+    display: none;
+
+}
+
+.cluster-badge {
+
+    display: inline-block;
+
+    padding: 10px 16px;
+
+    border-radius: 20px;
+
+    color: white;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+}
+
+.cluster-0 {
+
+    background: #16a34a;
+}
+
+.cluster-1 {
+
+    background: #6b7280;
+
+}
+
+.cluster-2 {
+
+    background: #ea580c;
+
+}
+
+.cluster-3 {
+
+    background: #dc2626;
+
+}
+
+.loading {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    display: none;
+
+    font-weight: bold;
+
 }

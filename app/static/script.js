@@ -1,136 +1,158 @@
 async function predictCluster() {
 
+    const button =
+
+        document.querySelector("button");
+
+    const loading =
+
+        document.getElementById(
+            "loading"
+        );
+
+    loading.style.display = "block";
+
+    button.disabled = true;
+
     const requestBody = {
 
         restaurant_visits:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "restaurant_visits"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         restaurant_spend_usd:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "restaurant_spend_usd"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         room_service_orders:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "room_service_orders"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         bar_lounge_visits:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "bar_lounge_visits"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         spa_treatments_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "spa_treatments_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         spa_spend_usd:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "spa_spend_usd"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         gym_checkins_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "gym_checkins_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         pool_beach_visits_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "pool_beach_visits_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         activity_bookings_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "activity_bookings_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         kids_club_sessions:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "kids_club_sessions"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         tour_bookings_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "tour_bookings_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         business_center_hours:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "business_center_hours"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         concierge_requests_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "concierge_requests_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         transport_requests_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "transport_requests_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         laundry_requests_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "laundry_requests_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         special_requests_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "special_requests_count"
-                ).value
-            ) || 0,
+                ).value || 0
+            ),
 
         service_complaint_count:
-            parseFloat(
+            Number(
                 document.getElementById(
                     "service_complaint_count"
-                ).value
-            ) || 0
+                ).value || 0
+            )
     };
+
+    console.log(
+        "Request Payload:",
+        requestBody
+    );
 
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:8000/predict-cluster",
+
+            "/predict-cluster",
+
             {
 
                 method: "POST",
 
                 headers: {
+
                     "Content-Type":
                         "application/json"
                 },
@@ -150,17 +172,27 @@ async function predictCluster() {
         console.error(error);
 
         alert(
-            "Error connecting to backend."
+            "Prediction failed."
         );
+
+    } finally {
+
+        loading.style.display = "none";
+
+        button.disabled = false;
     }
 }
 
 function displayResult(data) {
 
     const resultContainer =
+
         document.getElementById(
             "result-container"
         );
+
+    resultContainer.style.display =
+        "block";
 
     resultContainer.innerHTML = `
 
@@ -168,14 +200,16 @@ function displayResult(data) {
             Prediction Result
         </h2>
 
-        <p>
-            <strong>Predicted Cluster:</strong>
-            ${data.predicted_cluster}
-        </p>
+        <div class="
+            cluster-badge
+            cluster-${data.predicted_cluster}
+        ">
+            ${data.cluster_name}
+        </div>
 
         <p>
-            <strong>Cluster Name:</strong>
-            ${data.cluster_name}
+            <strong>Cluster ID:</strong>
+            ${data.predicted_cluster}
         </p>
 
         <p>
@@ -188,12 +222,14 @@ function displayResult(data) {
         </h3>
 
         <ul>
+
             ${data.recommendations
                 .map(
                     recommendation =>
                     `<li>${recommendation}</li>`
                 )
                 .join("")}
+
         </ul>
 
         <h3>
@@ -201,12 +237,14 @@ function displayResult(data) {
         </h3>
 
         <ul>
+
             ${data.operational_insights
                 .map(
                     insight =>
                     `<li>${insight}</li>`
                 )
                 .join("")}
+
         </ul>
     `;
 }
