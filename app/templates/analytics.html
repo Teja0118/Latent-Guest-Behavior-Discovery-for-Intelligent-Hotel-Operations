@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
 
     <title>
-        Hotel Guest Intelligence
+        Analytics Dashboard
     </title>
 
     <link
@@ -44,19 +44,26 @@
     <div class="container">
 
         <h1>
-            Hotel Guest Behavior Intelligence
+            Analytics Dashboard
         </h1>
 
-        <p>
+        <div id="summary-cards">
 
-            AI-powered hospitality analytics
-            platform for intelligent guest
-            clustering, recommendations,
-            operational insights, and analytics.
+        </div>
 
-        </p>
+        <div class="chart-container">
+
+            <canvas id="clusterChart">
+
+            </canvas>
+
+        </div>
 
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="/static/analytics.js"></script>
 
 </body>
 

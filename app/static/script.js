@@ -1,11 +1,9 @@
 async function predictCluster() {
 
     const button =
-
         document.querySelector("button");
 
     const loading =
-
         document.getElementById(
             "loading"
         );
@@ -136,23 +134,15 @@ async function predictCluster() {
             )
     };
 
-    console.log(
-        "Request Payload:",
-        requestBody
-    );
-
     try {
 
         const response = await fetch(
-
             "/predict-cluster",
-
             {
 
                 method: "POST",
 
                 headers: {
-
                     "Content-Type":
                         "application/json"
                 },
@@ -186,7 +176,6 @@ async function predictCluster() {
 function displayResult(data) {
 
     const resultContainer =
-
         document.getElementById(
             "result-container"
         );
@@ -200,16 +189,9 @@ function displayResult(data) {
             Prediction Result
         </h2>
 
-        <div class="
-            cluster-badge
-            cluster-${data.predicted_cluster}
-        ">
-            ${data.cluster_name}
-        </div>
-
         <p>
-            <strong>Cluster ID:</strong>
-            ${data.predicted_cluster}
+            <strong>Cluster:</strong>
+            ${data.cluster_name}
         </p>
 
         <p>

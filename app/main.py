@@ -10,26 +10,12 @@ from api.routes.prediction_routes import (
     router as prediction_router
 )
 
-from database.database import engine
-
-from database.models import Base
-
-
-Base.metadata.create_all(
-    bind=engine
+from api.routes.analytics_routes import (
+    router as analytics_router
 )
 
 app = FastAPI(
-
-    title="Hotel Guest Behavior Intelligence System",
-
-    description=(
-        "AI-powered hospitality guest "
-        "behavior clustering and "
-        "recommendation system."
-    ),
-
-    version="1.0.0"
+    title="Hotel Guest Behavior Intelligence"
 )
 
 app.mount(
@@ -43,20 +29,13 @@ templates = Jinja2Templates(
 )
 
 app.include_router(
-    prediction_router,
-    tags=["Prediction API"]
+    prediction_router
 )
 
-@app.get("/health")
-def health_check():
+app.include_router(
+    analytics_router
+)
 
-    return {
-
-        "status": "healthy",
-
-        "application":
-            "Hotel Guest Behavior Intelligence"
-    }
 
 @app.get("/")
 def home(
@@ -66,4 +45,48 @@ def home(
     return templates.TemplateResponse(
         request=request,
         name="index.html"
+    )
+
+
+@app.get("/predict")
+def predict_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="predict.html"
+    )
+
+
+@app.get("/analytics")
+def analytics_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="analytics.html"
+    )
+
+
+@app.get("/history")
+def history_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="history.html"
+    )
+
+
+@app.get("/about")
+def about_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="about.html"
     )
