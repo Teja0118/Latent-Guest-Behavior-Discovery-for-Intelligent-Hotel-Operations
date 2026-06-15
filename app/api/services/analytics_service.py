@@ -5,6 +5,7 @@ from database.models import PredictionHistory
 class AnalyticsService:
         
     def get_summary(self):
+
         database = SessionLocal()
 
         try:
@@ -24,22 +25,66 @@ class AnalyticsService:
                 ).scalar()
             )
 
+            top_cluster_result = (
+
+                database.query(
+                    PredictionHistory.cluster_name,
+                    func.count(
+                        PredictionHistory.id
+                    ).label("count")
+                )
+                .group_by(
+                    PredictionHistory.cluster_name
+                )
+                .order_by(
+                    func.count(
+                        PredictionHistory.id
+                    ).desc()
+                )
+                .first()
+            )
+
+            total_clusters = (
+
+                database.query(
+                    PredictionHistory.cluster_name
+                )
+                .distinct()
+                .count()
+            )
+
             return {
-                "total_predictions": total_predictions,
+
+                "total_predictions":
+                    total_predictions,
+
                 "average_confidence":
                     round(
                         average_confidence or 0,
                         2
-                    ) 
+                    ),
+
+                "total_clusters":
+                    total_clusters,
+
+                "top_cluster":
+                    top_cluster_result[0]
+                    if top_cluster_result
+                    else "N/A"
             }
-        
+
         finally:
+
             database.close()
-        
+
     def get_cluster_distribution(self):
+
         database = SessionLocal()
+
         try:
+
             results = (
+
                 database.query(
                     PredictionHistory.cluster_name,
                     func.count(
@@ -51,15 +96,24 @@ class AnalyticsService:
                 )
                 .all()
             )
+
             distribution = []
 
             for cluster_name, count in results:
+
                 distribution.append({
-                    "cluster_name": cluster_name,
-                    "count": count
+
+                    "cluster_name":
+                        cluster_name,
+
+                    "count":
+                        count
                 })
-                return distribution
+
+            return distribution
+
         finally:
+
             database.close()
 
     def get_recent_predictions(self):
@@ -82,7 +136,10 @@ class AnalyticsService:
             for row in results:
                 recent_predictions.append({
                     "cluster_name": row.cluster_name,
-                    "confidence": row.confidence,
+                    "confidence": round(
+                        float(row.confidence),
+                        2
+                    ),
                     "created_at": str(row.created_at)
                 })
             return recent_predictions

@@ -2,9 +2,11 @@ let clusterChart = null;
 
 async function loadAnalytics() {
 
-    loadSummary();
+    await loadSummary();
 
-    loadClusterDistribution();
+    await loadClusterDistribution();
+
+    await loadRecentPredictions();
 }
 
 async function loadSummary() {
@@ -15,15 +17,61 @@ async function loadSummary() {
 
     const data = await response.json();
 
-    document.getElementById(
-        "total-predictions"
-    ).innerText =
-        data.total_predictions;
+    const container =
+        document.getElementById(
+            "summary-cards"
+        );
 
-    document.getElementById(
-        "avg-confidence"
-    ).innerText =
-        data.average_confidence + "%";
+    container.innerHTML = `
+
+        <div class="analytics-card">
+
+            <h3>
+                Total Predictions
+            </h3>
+
+            <p>
+                ${data.total_predictions}
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <h3>
+                Average Confidence
+            </h3>
+
+            <p>
+                ${data.average_confidence}%
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <h3>
+                Guest Categories
+            </h3>
+
+            <p>
+                ${data.total_clusters}
+            </p>
+
+        </div>
+
+        <div class="analytics-card">
+
+            <h3>
+                Top Cluster
+            </h3>
+
+            <p>
+                ${data.top_cluster}
+            </p>
+
+        </div>
+    `;
 }
 
 async function loadClusterDistribution() {
@@ -54,7 +102,7 @@ async function loadClusterDistribution() {
 
     clusterChart = new Chart(ctx, {
 
-        type: "pie",
+        type: "doughnut",
 
         data: {
 
@@ -62,7 +110,18 @@ async function loadClusterDistribution() {
 
             datasets: [{
 
-                data: values
+                data: values,
+
+                backgroundColor: [
+
+                    "#7c3aed",
+                    "#ec4899",
+                    "#f59e0b",
+                    "#10b981",
+                    "#3b82f6"
+                ],
+
+                borderWidth: 0
             }]
         },
 
@@ -70,9 +129,109 @@ async function loadClusterDistribution() {
 
             responsive: true,
 
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+
+            cutout: "55%",
+
+            layout: {
+
+                padding: {
+
+                    top: 10,
+
+                    bottom: 20
+                }
+            },
+
+            plugins: {
+
+                legend: {
+
+                    position: "bottom",
+
+                    labels: {
+
+                        boxWidth: 14,
+
+                        padding: 16,
+
+                        font: {
+
+                            size: 11
+                        }
+                    }
+                }
+            }
         }
     });
+}
+
+async function loadRecentPredictions() {
+
+    try {
+
+        const response = await fetch(
+            "/analytics/recent-predictions"
+        );
+
+        const data = await response.json();
+
+        const tableBody =
+            document.getElementById(
+                "recent-predictions-body"
+            );
+
+        tableBody.innerHTML = "";
+
+        if (!data.length) {
+
+            tableBody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="3">
+
+                        No predictions available
+
+                    </td>
+
+                </tr>
+            `;
+
+            return;
+        }
+
+        data.forEach(item => {
+
+            tableBody.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${item.cluster_name}
+                    </td>
+
+                    <td>
+                        ${item.confidence}%
+                    </td>
+
+                    <td>
+                        ${new Date(
+                            item.created_at
+                        ).toLocaleString()}
+                    </td>
+
+                </tr>
+            `;
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Recent predictions error:",
+            error
+        );
+    }
 }
 
 loadAnalytics();

@@ -19,43 +19,132 @@
 
 <body>
 
-    <nav class="navbar">
-
-        <a href="/">Home</a>
-
-        <a href="/predict">
-            Predict
-        </a>
-
-        <a href="/analytics">
-            Analytics
-        </a>
-
-        <a href="/history">
-            History
-        </a>
-
-        <a href="/about">
-            About
-        </a>
-
-    </nav>
-
-    <div class="container">
+    <div class="top-navbar">
 
         <h1>
-            Analytics Dashboard
+            Hotel Guest Behavior Intelligence
         </h1>
 
-        <div id="summary-cards">
+    </div>
+
+    <div class="layout-container">
+
+        <div class="sidebar">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/predict">
+                Predict
+            </a>
+
+            <a
+                href="/analytics"
+                class="active"
+            >
+                Analytics
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+            <a href="/about">
+                About
+            </a>
 
         </div>
 
-        <div class="chart-container">
+        <div class="main-content">
 
-            <canvas id="clusterChart">
+            <div class="page-header">
 
-            </canvas>
+                <div>
+
+                    <h1>
+                        Analytics Dashboard
+                    </h1>
+
+                    <p>
+
+                        Monitor guest behavior,
+                        prediction distribution,
+                        confidence trends,
+                        and operational insights.
+
+                    </p>
+
+                </div>
+
+                <div class="header-badge">
+
+                    Live AI Analytics
+
+                </div>
+
+            </div>
+
+            <div
+                id="summary-cards"
+                class="analytics-grid"
+            >
+
+            </div>
+
+            <div class="analytics-layout">
+
+                <div class="chart-container">
+
+                    <h2>
+                        Cluster Distribution
+                    </h2>
+
+                    <canvas id="clusterChart">
+
+                    </canvas>
+
+                </div>
+
+                <div class="recent-predictions-card">
+
+                    <h2>
+                        Recent Predictions
+                    </h2>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cluster
+                                </th>
+
+                                <th>
+                                    Confidence
+                                </th>
+
+                                <th>
+                                    Time
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="recent-predictions-body"
+                        >
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
 
         </div>
 

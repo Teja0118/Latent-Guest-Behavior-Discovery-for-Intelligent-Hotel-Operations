@@ -185,48 +185,68 @@ function displayResult(data) {
 
     resultContainer.innerHTML = `
 
-        <h2>
-            Prediction Result
-        </h2>
+        <div class="result-top-section">
 
-        <p>
-            <strong>Cluster:</strong>
-            ${data.cluster_name}
-        </p>
+            <div class="cluster-pill">
 
-        <p>
-            <strong>Confidence:</strong>
-            ${data.cluster_confidence}%
-        </p>
+                ${data.cluster_name}
 
-        <h3>
-            Recommendations
-        </h3>
+            </div>
 
-        <ul>
+            <div class="confidence-box">
 
-            ${data.recommendations
-                .map(
-                    recommendation =>
-                    `<li>${recommendation}</li>`
-                )
-                .join("")}
+                <div class="confidence-label">
 
-        </ul>
+                    Prediction Confidence
 
-        <h3>
-            Operational Insights
-        </h3>
+                </div>
 
-        <ul>
+                <div class="confidence-value">
 
-            ${data.operational_insights
-                .map(
-                    insight =>
-                    `<li>${insight}</li>`
-                )
-                .join("")}
+                    ${data.cluster_confidence}%
 
-        </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="result-section">
+
+            <h3>
+                Personalized Recommendations
+            </h3>
+
+            <ul>
+
+                ${data.recommendations
+                    .map(
+                        recommendation =>
+                        `<li>${recommendation}</li>`
+                    )
+                    .join("")}
+
+            </ul>
+
+        </div>
+
+        <div class="result-section">
+
+            <h3>
+                Operational Insights
+            </h3>
+
+            <ul>
+
+                ${data.operational_insights
+                    .map(
+                        insight =>
+                        `<li>${insight}</li>`
+                    )
+                    .join("")}
+
+            </ul>
+
+        </div>
     `;
 }

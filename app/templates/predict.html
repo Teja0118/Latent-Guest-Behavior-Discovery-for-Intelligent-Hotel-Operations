@@ -22,166 +22,211 @@
 </head>
 
 <body>
-    <nav class="navbar">
-
-        <a href="/">Home</a>
-
-        <a href="/predict">
-            Predict
-        </a>
-
-        <a href="/analytics">
-            Analytics
-        </a>
-
-        <a href="/history">
-            History
-        </a>
-
-        <a href="/about">
-            About
-        </a>
-
-    </nav>
-    <div class="container">
+    
+    <div class="top-navbar">
 
         <h1>
             Hotel Guest Behavior Intelligence
         </h1>
 
-        <div class="form-container">
+    </div>
 
-            <h2>Dining Services</h2>
+    <div class="layout-container">
 
-            <input
-                type="number"
-                id="restaurant_visits"
-                placeholder="Restaurant Visits"
+        <div class="sidebar">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a
+                href="/predict"
+                class="active"
             >
+                Predict
+            </a>
 
-            <input
-                type="number"
-                id="restaurant_spend_usd"
-                placeholder="Restaurant Spend USD"
-            >
+            <a href="/analytics">
+                Analytics
+            </a>
 
-            <input
-                type="number"
-                id="room_service_orders"
-                placeholder="Room Service Orders"
-            >
+            <a href="/history">
+                History
+            </a>
 
-            <input
-                type="number"
-                id="bar_lounge_visits"
-                placeholder="Bar Lounge Visits"
-            >
-
-            <h2>Wellness Services</h2>
-
-            <input
-                type="number"
-                id="spa_treatments_count"
-                placeholder="Spa Treatments Count"
-            >
-
-            <input
-                type="number"
-                id="spa_spend_usd"
-                placeholder="Spa Spend USD"
-            >
-
-            <input
-                type="number"
-                id="gym_checkins_count"
-                placeholder="Gym Checkins Count"
-            >
-
-            <input
-                type="number"
-                id="pool_beach_visits_count"
-                placeholder="Pool / Beach Visits"
-            >
-
-            <h2>Family & Activities</h2>
-
-            <input
-                type="number"
-                id="activity_bookings_count"
-                placeholder="Activity Bookings Count"
-            >
-
-            <input
-                type="number"
-                id="kids_club_sessions"
-                placeholder="Kids Club Sessions"
-            >
-
-            <input
-                type="number"
-                id="tour_bookings_count"
-                placeholder="Tour Bookings Count"
-            >
-
-            <h2>Business & Operations</h2>
-
-            <input
-                type="number"
-                id="business_center_hours"
-                placeholder="Business Center Hours"
-            >
-
-            <input
-                type="number"
-                id="concierge_requests_count"
-                placeholder="Concierge Requests Count"
-            >
-
-            <input
-                type="number"
-                id="transport_requests_count"
-                placeholder="Transport Requests Count"
-            >
-
-            <input
-                type="number"
-                id="laundry_requests_count"
-                placeholder="Laundry Requests Count"
-            >
-
-            <input
-                type="number"
-                id="special_requests_count"
-                placeholder="Special Requests Count"
-            >
-
-            <input
-                type="number"
-                id="service_complaint_count"
-                placeholder="Service Complaint Count"
-            >
-
-            <button onclick="predictCluster()">
-                Predict Guest Archetype
-            </button>
+            <a href="/about">
+                About
+            </a>
 
         </div>
 
-        <div
-            id="loading"
-            class="loading"
-        >
-            Predicting guest behavior...
-        </div>
+        <div class="main-content">
 
-        <div
-            id="result-container"
-            class="result-container"
-        >
+            <!-- EXISTING PAGE CONTENT HERE -->
+            <div class="container">
 
+                <div class="page-header">
+
+                    <div>
+
+                        <h1>
+                            Guest Behavior Prediction
+                        </h1>
+
+                        <p>
+                            Predict hotel guest archetypes
+                            using AI-powered behavioral
+                            intelligence.
+                        </p>
+
+                    </div>
+
+                    <div class="header-badge">
+
+                        AI Powered
+
+                    </div>
+
+                </div>
+
+                <div class="form-container">
+
+                    <h2>Dining Services</h2>
+
+                    <input
+                        type="number"
+                        id="restaurant_visits"
+                        placeholder="Restaurant Visits"
+                    >
+
+                    <input
+                        type="number"
+                        id="restaurant_spend_usd"
+                        placeholder="Restaurant Spend USD"
+                    >
+
+                    <input
+                        type="number"
+                        id="room_service_orders"
+                        placeholder="Room Service Orders"
+                    >
+
+                    <input
+                        type="number"
+                        id="bar_lounge_visits"
+                        placeholder="Bar Lounge Visits"
+                    >
+
+                    <h2>Wellness Services</h2>
+
+                    <input
+                        type="number"
+                        id="spa_treatments_count"
+                        placeholder="Spa Treatments Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="spa_spend_usd"
+                        placeholder="Spa Spend USD"
+                    >
+
+                    <input
+                        type="number"
+                        id="gym_checkins_count"
+                        placeholder="Gym Checkins Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="pool_beach_visits_count"
+                        placeholder="Pool / Beach Visits"
+                    >
+
+                    <h2>Family & Activities</h2>
+
+                    <input
+                        type="number"
+                        id="activity_bookings_count"
+                        placeholder="Activity Bookings Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="kids_club_sessions"
+                        placeholder="Kids Club Sessions"
+                    >
+
+                    <input
+                        type="number"
+                        id="tour_bookings_count"
+                        placeholder="Tour Bookings Count"
+                    >
+
+                    <h2>Business & Operations</h2>
+
+                    <input
+                        type="number"
+                        id="business_center_hours"
+                        placeholder="Business Center Hours"
+                    >
+
+                    <input
+                        type="number"
+                        id="concierge_requests_count"
+                        placeholder="Concierge Requests Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="transport_requests_count"
+                        placeholder="Transport Requests Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="laundry_requests_count"
+                        placeholder="Laundry Requests Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="special_requests_count"
+                        placeholder="Special Requests Count"
+                    >
+
+                    <input
+                        type="number"
+                        id="service_complaint_count"
+                        placeholder="Service Complaint Count"
+                    >
+
+                    <button onclick="predictCluster()">
+                        Predict Guest Archetype
+                    </button>
+
+                </div>
+
+                <div
+                    id="loading"
+                    class="loading"
+                >
+                    Predicting guest behavior...
+                </div>
+
+                <div
+                    id="result-container"
+                    class="result-container"
+                >
+
+                </div>
+
+            </div>
         </div>
 
     </div>
+
+    
 
     <script src="/static/script.js"></script>
 
