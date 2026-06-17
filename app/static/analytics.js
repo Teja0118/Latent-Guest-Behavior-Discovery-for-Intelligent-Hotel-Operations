@@ -216,9 +216,9 @@ async function loadRecentPredictions() {
                     </td>
 
                     <td>
-                        ${new Date(
+                        ${formatTimestamp(
                             item.created_at
-                        ).toLocaleString()}
+                        )}
                     </td>
 
                 </tr>
@@ -240,3 +240,34 @@ setInterval(
     loadAnalytics,
     10000
 );
+
+function formatTimestamp(timestamp) {
+
+    const date =
+        new Date(timestamp);
+
+    const formatted =
+        date.toLocaleString(
+            "en-GB",
+            {
+
+                day: "2-digit",
+
+                month: "short",
+
+                year: "numeric",
+
+                hour: "2-digit",
+
+                minute: "2-digit",
+
+                second: "2-digit",
+
+                hour12: true
+            }
+        );
+
+    return formatted
+        .replace(" AM", " am")
+        .replace(" PM", " pm");
+}

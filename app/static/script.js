@@ -157,6 +157,8 @@ async function predictCluster() {
 
         displayResult(data);
 
+        clearPredictionForm();
+
     } catch (error) {
 
         console.error(error);
@@ -250,3 +252,104 @@ function displayResult(data) {
         </div>
     `;
 }
+
+function clearPredictionForm() {
+
+    document
+        .querySelectorAll(
+            ".form-container input"
+        )
+        .forEach(input => {
+
+            input.value = "";
+        });
+}
+
+document
+    .querySelectorAll(
+        '.form-container input[type="number"]'
+    )
+    .forEach(input => {
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                if (
+                    Number(input.value) < 0
+                ) {
+
+                    input.value = 0;
+                }
+            }
+        );
+    });
+
+window.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document
+            .querySelectorAll(
+                ".form-container input"
+            )
+            .forEach(input => {
+
+                const wrapper =
+                    document.createElement(
+                        "div"
+                    );
+
+                wrapper.className =
+                    "input-wrapper";
+
+                input.parentNode.insertBefore(
+                    wrapper,
+                    input
+                );
+
+                wrapper.appendChild(
+                    input
+                );
+
+                const clearBtn =
+                    document.createElement(
+                        "span"
+                    );
+
+                clearBtn.innerHTML =
+                    "&times;";
+
+                clearBtn.className =
+                    "input-clear";
+
+                wrapper.appendChild(
+                    clearBtn
+                );
+
+                input.addEventListener(
+                    "input",
+                    () => {
+
+                        clearBtn.style.display =
+                            input.value
+                                ? "block"
+                                : "none";
+                    }
+                );
+
+                clearBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        input.value = "";
+
+                        clearBtn.style.display =
+                            "none";
+
+                        input.focus();
+                    }
+                );
+            });
+    }
+);
