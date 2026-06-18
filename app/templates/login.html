@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <div class="auth-card">
+
+            <h1>
+                Login
+            </h1>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Email"
+            >
+
+            <input
+                id="password"
+                type="password"
+                placeholder="Password"
+            >
+
+            <button onclick="loginUser()">
+                Login
+            </button>
+
+            <p>
+
+                Don't have an account?
+
+                <a href="/register-page">
+
+                    Register
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="/static/auth.js"></script>
+
+</body>
+
+</html>

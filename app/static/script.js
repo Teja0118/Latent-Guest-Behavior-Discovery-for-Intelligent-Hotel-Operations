@@ -136,22 +136,36 @@ async function predictCluster() {
 
     try {
 
-        const response = await fetch(
-            "/predict-cluster",
-            {
+        const token =
 
-                method: "POST",
+            localStorage.getItem(
+                "access_token"
+            );
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
+        const response =
+            await fetch(
 
-                body: JSON.stringify(
-                    requestBody
-                )
-            }
-        );
+                "/predict-cluster",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    },
+
+                    body:
+                        JSON.stringify(
+                            requestBody
+                        )
+                }
+            );
 
         const data = await response.json();
 

@@ -14,8 +14,21 @@ from api.routes.analytics_routes import (
     router as analytics_router
 )
 
+from api.routes.auth_routes import (
+    router as auth_router
+)
+
+from database.database import Base
+from database.database import engine
+
+from database import models
+
 app = FastAPI(
     title="Hotel Guest Behavior Intelligence"
+)
+
+Base.metadata.create_all(
+    bind=engine
 )
 
 app.mount(
@@ -35,6 +48,37 @@ app.include_router(
 app.include_router(
     analytics_router
 )
+
+app.include_router(
+    auth_router
+)
+
+
+@app.get("/login-page")
+def login_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+
+        request=request,
+
+        name="login.html"
+    )
+
+
+@app.get("/register-page")
+def register_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+
+        request=request,
+
+        name="register.html"
+    )
+
 
 
 @app.get("/")

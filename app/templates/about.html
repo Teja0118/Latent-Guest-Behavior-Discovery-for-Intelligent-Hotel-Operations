@@ -15,6 +15,11 @@
         href="/static/style.css"
     >
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
 </head>
 
 <body>
@@ -32,26 +37,35 @@
         <div class="sidebar">
 
             <a href="/">
+                <i class="fas fa-house"></i>
                 Home
             </a>
 
             <a href="/predict">
+                <i class="fas fa-brain"></i>
                 Predict
             </a>
 
             <a href="/analytics">
+                <i class="fas fa-chart-pie"></i>
                 Analytics
             </a>
 
             <a href="/history">
+                <i class="fas fa-clock-rotate-left"></i>
                 History
             </a>
 
-            <a
-                href="/about"
-                class="active"
-            >
+            <a href="/about" class="active">
+                <i class="fas fa-circle-info"></i>
                 About
+            </a>
+
+            <a
+                href="#"
+                onclick="logout()"
+            >
+                🚪 Logout
             </a>
 
         </div>
@@ -144,7 +158,8 @@
 
     </div>
 
-    
+    <script src="/static/auth_guard.js"></script>
+    <script src="/static/auth.js"></script>
 
 </body>
 

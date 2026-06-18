@@ -11,9 +11,31 @@ async function loadAnalytics() {
 
 async function loadSummary() {
 
-    const response = await fetch(
-        "/analytics/summary"
-    );
+    const token =
+        localStorage.getItem(
+            "access_token"
+        );
+
+    const response =
+        await fetch(
+            "/analytics/summary",
+            {
+                headers: {
+                    "Authorization":
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+    if (!response.ok) {
+
+        console.error(
+            "Summary API Error:",
+            response.status
+        );
+
+        return;
+    }
 
     const data = await response.json();
 
@@ -76,9 +98,29 @@ async function loadSummary() {
 
 async function loadClusterDistribution() {
 
-    const response = await fetch(
-        "/analytics/cluster-distribution"
-    );
+    const token =
+
+        localStorage.getItem(
+            "access_token"
+        );
+
+    const response =
+        await fetch(
+
+            "/analytics/cluster-distribution",
+
+            {
+
+                method: "GET",
+
+                headers: {
+
+                    "Authorization":
+                        `Bearer ${token}`
+                }
+            }
+        );
+
 
     const data = await response.json();
 
@@ -170,9 +212,27 @@ async function loadRecentPredictions() {
 
     try {
 
-        const response = await fetch(
-            "/analytics/recent-predictions"
-        );
+        const token =
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/recent-predictions",
+
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         const data = await response.json();
 

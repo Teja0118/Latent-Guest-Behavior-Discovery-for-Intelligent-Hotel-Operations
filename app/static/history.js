@@ -6,13 +6,34 @@ let currentPage = 1;
 
 const recordsPerPage = 10;
 
+
+
 async function loadRecentPredictions() {
 
     try {
 
-        const response = await fetch(
-            "/analytics/recent-predictions"
-        );
+        const token =
+
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/recent-predictions",
+
+                {
+
+                    method: "GET",
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
 
         const data = await response.json();
 

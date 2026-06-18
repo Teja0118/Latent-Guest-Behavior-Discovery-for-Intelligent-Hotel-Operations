@@ -2,12 +2,18 @@ from fastapi import APIRouter
 
 from fastapi import HTTPException
 
+from fastapi import Depends
+
 from api.schemas.guest_input_schema import (
 GuestInputSchema
 )
 
 from api.services.prediction_service import (
 PredictionService
+)
+
+from api.services.auth_dependency import (
+    get_current_user
 )
 
 from api.services.recommendation_service import (
@@ -39,7 +45,13 @@ OperationalService()
 history_service = HistoryService()
 
 @router.post("/predict-cluster")
-def predict_cluster(guest_data: GuestInputSchema):
+def predict_cluster(
+        guest_data: GuestInputSchema,
+        
+        current_user=Depends(
+            get_current_user
+        )
+    ):
 
     try:
 
