@@ -12,43 +12,79 @@
 
 </head>
 
-<body>
+<body class="auth-body">
 
-    <div class="auth-page">
+    <div class="auth-layout">
 
-        <div class="auth-card">
+        <div class="auth-left">
 
-            <h1>
-                Login
-            </h1>
+            <div class="auth-brand">
 
-            <input
-                id="email"
-                type="email"
-                placeholder="Email"
-            >
+                <h1>
+                    Hotel Guest Behavior Intelligence
+                </h1>
 
-            <input
-                id="password"
-                type="password"
-                placeholder="Password"
-            >
+                <p>
+                    AI-powered hospitality analytics platform
+                    for guest segmentation, recommendations,
+                    operational insights and predictive intelligence.
+                </p>
 
-            <button onclick="loginUser()">
-                Login
-            </button>
+                <div class="auth-features">
 
-            <p>
+                    <div>✓ Guest Behavior Prediction</div>
 
-                Don't have an account?
+                    <div>✓ AI Recommendations</div>
 
-                <a href="/register-page">
+                    <div>✓ Analytics Dashboard</div>
 
-                    Register
+                    <div>✓ Prediction History</div>
 
-                </a>
+                </div>
 
-            </p>
+            </div>
+
+        </div>
+
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+                <h1>Welcome Back</h1>
+
+                <p class="auth-subtitle">
+                    Login to continue
+                </p>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Email Address"
+                >
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                >
+
+                <button onclick="loginUser()">
+                    Login
+                </button>
+
+                <p class="auth-switch">
+
+                    Don't have an account?
+
+                    <a href="/register-page">
+
+                        Register
+
+                    </a>
+
+                </p>
+
+            </div>
 
         </div>
 

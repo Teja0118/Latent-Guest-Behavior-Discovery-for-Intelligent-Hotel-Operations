@@ -1,3 +1,32 @@
+
+function showToast(
+
+    message,
+
+    type = "success"
+) {
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+    toast.className =
+        `toast toast-${type}`;
+
+    toast.innerHTML =
+        message;
+
+    document.body.appendChild(
+        toast
+    );
+
+    setTimeout(() => {
+
+        toast.remove();
+
+    }, 3000);
+}
 async function registerUser() {
 
     const body = {
@@ -40,10 +69,16 @@ async function registerUser() {
     const data =
         await response.json();
 
-    alert(data.message);
+    showToast(
+        "Registration Successful ✓"
+    );
 
-    window.location.href =
-        "/login-page";
+    setTimeout(() => {
+
+        window.location.href =
+            "/login-page";
+
+    }, 1500);
 }
 
 async function loginUser() {
@@ -84,9 +119,12 @@ async function loginUser() {
 
     if (!response.ok) {
 
-        alert(
+        showToast(
+
             data.detail ||
-            "Login Failed"
+            "Login Failed",
+
+            "error"
         );
 
         return;
@@ -98,6 +136,11 @@ async function loginUser() {
 
         data.access_token
     );
+
+    showToast(
+        "Login Successful ✓"
+    );
+
 
     console.log(
 

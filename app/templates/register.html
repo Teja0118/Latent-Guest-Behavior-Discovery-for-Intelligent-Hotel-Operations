@@ -12,48 +12,84 @@
 
 </head>
 
-<body>
+<body class="auth-body">
 
-    <div class="auth-page">
+    <div class="auth-layout">
 
-        <div class="auth-card">
+        <div class="auth-left">
 
-            <h1>
-                Register
-            </h1>
+            <div class="auth-brand">
 
-            <input
-                id="name"
-                placeholder="Name"
-            >
+                <h1>
+                    Hotel Guest Behavior Intelligence
+                </h1>
 
-            <input
-                id="email"
-                type="email"
-                placeholder="Email"
-            >
+                <p>
+                    Discover hidden guest behavior patterns,
+                    generate personalized recommendations,
+                    and improve hotel operations using AI.
+                </p>
 
-            <input
-                id="password"
-                type="password"
-                placeholder="Password"
-            >
+                <div class="auth-features">
 
-            <button onclick="registerUser()">
-                Register
-            </button>
+                    <div>✓ AI Guest Clustering</div>
 
-            <p>
+                    <div>✓ Operational Intelligence</div>
 
-                Already have an account?
+                    <div>✓ Analytics Dashboard</div>
 
-                <a href="/login-page">
+                    <div>✓ Secure Access</div>
 
-                    Login
+                </div>
 
-                </a>
+            </div>
 
-            </p>
+        </div>
+
+        <div class="auth-right">
+
+            <div class="auth-card">
+
+                <h1>Create Account</h1>
+
+                <p class="auth-subtitle">
+                    Start using the platform
+                </p>
+
+                <input
+                    id="name"
+                    placeholder="Full Name"
+                >
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="Email Address"
+                >
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                >
+
+                <button onclick="registerUser()">
+                    Register
+                </button>
+
+                <p class="auth-switch">
+
+                    Already have an account?
+
+                    <a href="/login-page">
+
+                        Login
+
+                    </a>
+
+                </p>
+
+            </div>
 
         </div>
 
