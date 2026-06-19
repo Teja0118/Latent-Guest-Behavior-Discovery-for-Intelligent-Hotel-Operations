@@ -10,6 +10,11 @@
         href="/static/style.css"
     >
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
 </head>
 
 <body class="auth-body">
@@ -62,11 +67,22 @@
                     placeholder="Email Address"
                 >
 
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                >
+                <div class="password-wrapper">
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                    >
+
+                    <span
+                        class="password-toggle"
+                        onclick="togglePassword('password', this)"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+
+                </div>
 
                 <button onclick="loginUser()">
                     Login

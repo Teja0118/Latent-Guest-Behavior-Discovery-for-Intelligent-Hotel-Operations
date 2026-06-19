@@ -10,6 +10,11 @@
         href="/static/style.css"
     >
 
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
 </head>
 
 <body class="auth-body">
@@ -67,11 +72,61 @@
                     placeholder="Email Address"
                 >
 
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
+                <div class="password-wrapper">
+
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        oninput="checkPasswordStrength()"
+                    >
+
+                    <span
+                        class="password-toggle"
+                        onclick="togglePassword('password', this)"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+
+                </div>
+
+                <div class="strength-container">
+
+                    <div
+                        id="strength-bar"
+                        class="strength-bar"
+                    ></div>
+
+                </div>
+
+                <div
+                    id="strength-text"
+                    class="strength-text"
                 >
+                    Password Strength
+                </div>
+
+                <div class="password-wrapper">
+
+                    <input
+                        id="confirm_password"
+                        type="password"
+                        placeholder="Confirm Password"
+                    >
+
+                    <span
+                        class="password-toggle"
+                        onclick="togglePassword('confirm_password', this)"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </span>
+
+                </div>
+
+                <div
+                    id="password-error"
+                    class="validation-error"
+                ></div>
 
                 <button onclick="registerUser()">
                     Register
