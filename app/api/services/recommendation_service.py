@@ -2,12 +2,29 @@ class RecommendationService:
 
     CLUSTER_DETAILS = {
 
-        # Family + Dining Guests
+        # Luxury Dining Guests
 
         0: {
 
             "cluster_name":
-                "Family Dining Guests",
+                "Luxury Dining Guests",
+
+            "recommendations": [
+
+                "Luxury Dining Experience",
+
+                "Fine Dining Package",
+
+                "Premium Beverage Package"
+            ]
+        },
+
+        # Family Leisure Guests
+
+        1: {
+
+            "cluster_name":
+                "Family Leisure Guests",
 
             "recommendations": [
 
@@ -15,13 +32,47 @@ class RecommendationService:
 
                 "Kids Club Access",
 
-                "Restaurant Loyalty Rewards"
+                "Adventure Activity Bundle"
             ]
         },
 
-        # Budget / Minimal Guests
+        # Wellness Luxury Guests
 
-        1: {
+        2: {
+
+            "cluster_name":
+                "Wellness Luxury Guests",
+
+            "recommendations": [
+
+                "Luxury Wellness Retreat",
+
+                "Spa & Gym Combo",
+
+                "Premium Wellness Membership"
+            ]
+        },
+
+        # Business Travelers
+
+        3: {
+
+            "cluster_name":
+                "Business Travelers",
+
+            "recommendations": [
+
+                "Business Travel Package",
+
+                "Executive Lounge Access",
+
+                "Airport Transfer Service"
+            ]
+        },
+
+        # Budget Minimal Guests
+
+        4: {
 
             "cluster_name":
                 "Budget Minimal Guests",
@@ -30,43 +81,26 @@ class RecommendationService:
 
                 "Budget-Friendly Stay",
 
-                "Express Service Experience",
+                "Seasonal Discount Offer",
 
-                "Seasonal Discount Offers"
+                "Quick Check-In Package"
             ]
         },
 
-        # Business + Mixed Guests
+        # Premium Family Business Guests
 
-        2: {
+        5: {
 
             "cluster_name":
-                "Business Leisure Guests",
+                "Premium Family Business Guests",
 
             "recommendations": [
 
-                "Business Travel Package",
+                "Family Business Package",
 
-                "Airport Transfer Service",
+                "Executive Family Suite",
 
-                "Laundry Express Service"
-            ]
-        },
-
-        # Luxury Wellness Guests
-
-        3: {
-
-            "cluster_name":
-                "Luxury Wellness Guests",
-
-            "recommendations": [
-
-                "Luxury Wellness Retreat",
-
-                "Spa & Gym Combo",
-
-                "Poolside Relaxation Package"
+                "Premium Concierge Services"
             ]
         }
     }

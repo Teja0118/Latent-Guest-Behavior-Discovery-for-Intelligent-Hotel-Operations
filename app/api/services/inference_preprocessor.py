@@ -40,13 +40,18 @@ class InferencePreprocessor:
 
         "total_business_services",
 
-        "family_activity_score"
+        "family_activity_score",
+
     ]
 
     def __init__(self):
 
-        self.preprocessor = joblib.load(
-            "models/clustering_preprocessor.pkl"
+        self.scaler = joblib.load(
+            "models/pca_kmeans_scaler.pkl"
+        )
+
+        self.pca = joblib.load(
+            "models/pca_transformer.pkl"
         )
 
     def preprocess_input(
@@ -134,6 +139,7 @@ class InferencePreprocessor:
                 ]
             )
 
+
             dataframe = pd.DataFrame(
                 [guest_data]
             )
@@ -142,13 +148,19 @@ class InferencePreprocessor:
                 self.FEATURE_COLUMNS
             ]
 
-            processed_dataframe = (
-                self.preprocessor.transform(
+            scaled_dataframe = (
+                self.scaler.transform(
                     dataframe
                 )
             )
 
-            return processed_dataframe
+            pca_dataframe = (
+                self.pca.transform(
+                    scaled_dataframe
+                )
+            )
+
+            return pca_dataframe
 
         except Exception as error:
 

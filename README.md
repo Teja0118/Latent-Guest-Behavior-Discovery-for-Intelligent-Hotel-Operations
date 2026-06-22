@@ -2,25 +2,25 @@
 
 ## Overview
 
-Latent Guest Behavior Discovery for Intelligent Hotel Operations is an AI-powered hospitality analytics platform designed to uncover hidden guest behavior patterns using unsupervised machine learning techniques.
+Latent Guest Behavior Discovery for Intelligent Hotel Operations is an AI-powered hospitality analytics platform that identifies hidden guest behavior patterns using unsupervised machine learning.
 
-The system analyzes guest interaction data across hotel services such as dining, wellness, recreation, concierge, and operational services to identify natural guest archetypes. These insights help hotel management improve personalization, resource allocation, service quality, and operational efficiency.
+The system analyzes guest interactions across dining, wellness, recreation, family activities, business services, concierge requests, and operational services to discover natural guest archetypes. These insights help hotel management improve personalization, operational efficiency, resource allocation, and customer experience.
 
 ---
 
 ## Problem Statement
 
-Modern hotels collect large volumes of guest activity data but often lack the ability to identify meaningful behavioral patterns.
+Modern hotels generate large volumes of guest interaction data but often struggle to extract meaningful behavioral insights.
 
-Traditional rule-based segmentation fails to capture complex guest preferences and service utilization trends.
+Traditional rule-based segmentation approaches fail to capture complex guest preferences and service utilization patterns.
 
 This project addresses the problem by:
 
 * Discovering hidden guest behavior segments
-* Predicting guest archetypes using trained clustering models
+* Predicting guest archetypes using clustering models
 * Generating personalized recommendations
-* Providing operational insights for hotel management
-* Offering an interactive analytics dashboard
+* Providing operational intelligence
+* Delivering real-time analytics dashboards
 
 ---
 
@@ -38,9 +38,9 @@ This project addresses the problem by:
 ### Guest Behavior Prediction
 
 * Predict guest segment using activity data
-* Confidence score generation
-* Real-time prediction results
-* Cluster identification
+* Real-time cluster prediction
+* Cluster confidence reporting
+* Personalized guest classification
 
 ### Recommendation Engine
 
@@ -50,8 +50,8 @@ This project addresses the problem by:
 
 ### Operational Intelligence
 
-* Resource allocation recommendations
-* Staff planning insights
+* Resource allocation insights
+* Staffing recommendations
 * Service optimization suggestions
 
 ### Analytics Dashboard
@@ -84,10 +84,9 @@ This project addresses the problem by:
 ### Machine Learning
 
 * Scikit-Learn
-* Gaussian Mixture Models (GMM)
+* PCA (Principal Component Analysis)
 * K-Means Clustering
 * StandardScaler
-* LabelEncoder
 
 ### Data Processing
 
@@ -110,64 +109,125 @@ This project addresses the problem by:
 
 ---
 
-## Machine Learning Workflow
-
-### Data Collection
+## Dataset
 
 Hospitality guest activity dataset containing:
 
 * Dining interactions
-* Wellness service usage
+* Wellness services
 * Family activities
 * Business services
 * Concierge interactions
-* Special requests
+* Operational requests
 
-Dataset Size:
+### Dataset Statistics
 
-* 102,432 Records
-* 17 Behavioral Features
+* Records: 102,432
+* Original Features: 51
+* Clustering Features: 19
+
+---
+
+## Feature Engineering
+
+The final clustering model uses behavioral features including:
+
+* Restaurant Visits
+* Restaurant Spend
+* Bar Lounge Visits
+* Spa Treatments
+* Spa Spend
+* Gym Check-ins
+* Pool Visits
+* Activity Bookings
+* Kids Club Sessions
+* Tour Bookings
+* Business Center Usage
+* Concierge Requests
+* Transport Requests
+* Laundry Requests
+* Service Complaints
+
+### Engineered Features
+
+* Total Dining Spend
+* Total Wellness Usage
+* Total Business Services
+* Family Activity Score
 
 ---
 
-### Feature Engineering
+## Machine Learning Workflow
 
-Selected features include:
+### Data Preprocessing
 
-* Restaurant visits
-* Restaurant spend
-* Room service orders
-* Spa usage
-* Gym check-ins
-* Pool visits
-* Activity bookings
-* Concierge requests
-* Laundry requests
-* Transport requests
-* Special requests
-* Service complaints
+* Missing value handling
+* Feature selection
+* Behavioral feature engineering
+* Standard scaling
 
----
+### Dimensionality Reduction
+
+* Principal Component Analysis (PCA)
+* 85% variance retention
+* 9 principal components retained
 
 ### Clustering Model
 
 Algorithm:
 
-* Gaussian Mixture Model (GMM)
+* PCA + K-Means Clustering
 
-Model Artifacts:
+Final Hyperparameters:
 
-* gmm_guest_clustering_model.pkl
-* clustering_scaler.pkl
+* PCA Variance: 0.85
+* PCA Components: 9
+* K-Means Clusters: 6
+* Random State: 42
 
-Discovered Guest Segments:
+### Model Performance
 
-| Cluster | Guest Archetype         |
-| ------- | ----------------------- |
-| 0       | Luxury Wellness Guests  |
-| 1       | Business Leisure Guests |
-| 2       | Family Dining Guests    |
-| 3       | Budget Minimal Guests   |
+* Silhouette Score: 0.2341
+* Davies-Bouldin Score: 1.4100
+* Calinski-Harabasz Score: 23832.67
+
+---
+
+## Discovered Guest Segments
+
+| Cluster | Guest Segment                  |
+| ------- | ------------------------------ |
+| 0       | Luxury Dining Guests           |
+| 1       | Family Leisure Guests          |
+| 2       | Wellness Luxury Guests         |
+| 3       | Business Travelers             |
+| 4       | Budget Minimal Guests          |
+| 5       | Premium Family Business Guests |
+
+---
+
+## Model Artifacts
+
+Generated model files:
+
+* pca_kmeans_model.pkl
+* pca_kmeans_scaler.pkl
+* pca_transformer.pkl
+
+---
+
+## Association Rule Mining
+
+The platform also performs association rule mining using Apriori to identify frequently co-occurring guest service usage patterns.
+
+Examples:
+
+* Restaurant + Bar Lounge
+* Concierge + Transport
+* Laundry + Business Center
+* Spa + Gym
+
+These patterns support recommendation generation and operational planning.
 
 ---
 
@@ -180,17 +240,22 @@ Guest Activity Data
 Preprocessing
         │
         ▼
-Feature Scaling
+Feature Engineering
         │
         ▼
-GMM Clustering Model
+Standard Scaling
         │
         ▼
-Cluster Prediction
+PCA Transformation
+        │
+        ▼
+K-Means Clustering Model
         │
         ├────────► Recommendation Engine
         │
         ├────────► Operational Insights
+        │
+        ├────────► Prediction History
         │
         └────────► Analytics Dashboard
 ```
@@ -207,21 +272,19 @@ app/
 │   ├── schemas/
 │   └── services/
 │
+├── clustering/
+├── preprocessing/
+├── association_rules/
+├── recommendations/
 ├── database/
-│
 ├── models/
-│
+├── static/
 ├── templates/
 │
-├── static/
+├── training_pipeline.py
+├── main.py
 │
-├── clustering/
-│
-├── preprocessing/
-│
-├── recommendations/
-│
-└── main.py
+└── data/
 ```
 
 ---
@@ -273,6 +336,12 @@ GET /analytics/cluster-distribution
 GET /analytics/recent-predictions
 ```
 
+### History
+
+```http
+GET /history
+```
+
 ---
 
 ## Frontend Pages
@@ -284,7 +353,7 @@ GET /analytics/recent-predictions
 
 ### Predict
 
-* Guest Activity Form
+* Guest Activity Input Form
 * Prediction Results
 * Recommendations
 * Operational Insights
@@ -314,26 +383,28 @@ GET /analytics/recent-predictions
 * Role-based access control
 * Real-time analytics updates
 * Multi-property hotel support
-* Advanced recommendation engine
 * Cloud deployment
-* CI/CD integration
 * Docker containerization
+* CI/CD pipelines
+* Advanced recommendation engine
 
 ---
 
 ## Learning Outcomes
 
 * Unsupervised Machine Learning
+* PCA for Dimensionality Reduction
+* K-Means Clustering
 * Guest Behavior Analytics
 * FastAPI Development
 * JWT Authentication
 * PostgreSQL Integration
 * Full Stack Development
-* Analytics Dashboard Design
 * Recommendation Systems
+* Analytics Dashboard Development
 
 ---
 
 ## Author
 
-Developed as an end-to-end Machine Learning and Full Stack Hospitality Analytics Project using FastAPI, PostgreSQL, JavaScript, and Scikit-Learn.
+Developed as an end-to-end Machine Learning and Full Stack Hospitality Analytics Project using FastAPI, PostgreSQL, JavaScript, Chart.js, and Scikit-Learn.

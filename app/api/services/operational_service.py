@@ -2,48 +2,70 @@ class OperationalService:
 
     OPERATIONAL_INSIGHTS = {
 
-        # Family Dining Guests
+        # Luxury Dining Guests
 
         0: [
 
-            "Increase kids club staffing.",
+            "Increase restaurant staffing.",
 
-            "Improve restaurant capacity management.",
+            "Improve premium dining services.",
 
-            "Enhance family activity coordination."
+            "Expand lounge capacity."
         ],
 
-        # Budget Minimal Guests
+        # Family Leisure Guests
 
         1: [
 
-            "Reduce operational costs for low-engagement guests.",
+            "Increase kids club resources.",
 
-            "Maintain efficient basic service operations.",
+            "Expand family activities.",
 
-            "Improve customer support response."
+            "Improve activity scheduling."
         ],
 
-        # Business Leisure Guests
+        # Wellness Luxury Guests
 
         2: [
 
-            "Improve concierge availability.",
+            "Increase spa staffing.",
 
-            "Improve airport transport coordination.",
+            "Enhance wellness facilities.",
+
+            "Promote premium wellness packages."
+        ],
+
+        # Business Travelers
+
+        3: [
+
+            "Increase concierge staffing.",
+
+            "Improve transport coordination.",
 
             "Enhance business support services."
         ],
 
-        # Luxury Wellness Guests
+        # Budget Minimal Guests
 
-        3: [
+        4: [
 
-            "Increase spa staff allocation.",
+            "Optimize operational costs.",
 
-            "Improve premium wellness experience.",
+            "Maintain efficient basic services.",
 
-            "Enhance luxury guest engagement services."
+            "Promote upselling opportunities."
+        ],
+
+        # Premium Family Business Guests
+
+        5: [
+
+            "Balance family and business services.",
+
+            "Increase concierge support.",
+
+            "Improve multi-service coordination."
         ]
     }
 

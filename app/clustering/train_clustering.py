@@ -1,6 +1,10 @@
 from sklearn.mixture import GaussianMixture
 
-from sklearn.metrics import silhouette_score
+from sklearn.metrics import (
+    silhouette_score,
+    davies_bouldin_score,
+    calinski_harabasz_score
+)
 
 from sklearn.preprocessing import StandardScaler
 
@@ -54,7 +58,7 @@ class ClusteringTrainer:
         try:
 
             print(
-                "\nSilhouette Scores:\n"
+                "\nClustering Evaluation Metrics\n"
             )
 
             for k in range(2, 11):
@@ -63,7 +67,7 @@ class ClusteringTrainer:
 
                     n_components=k,
 
-                    covariance_type="diag",
+                    covariance_type="full",
 
                     random_state=42
                 )
@@ -74,24 +78,43 @@ class ClusteringTrainer:
                     )
                 )
 
-                score = silhouette_score(
+                silhouette = (
+                    silhouette_score(
+                        self.processed_dataframe,
+                        cluster_labels
+                    )
+                )
 
-                    self.processed_dataframe,
+                db_score = (
+                    davies_bouldin_score(
+                        self.processed_dataframe,
+                        cluster_labels
+                    )
+                )
 
-                    cluster_labels
+                ch_score = (
+                    calinski_harabasz_score(
+                        self.processed_dataframe,
+                        cluster_labels
+                    )
                 )
 
                 print(
-                    f"K = {k} | "
-                    f"Silhouette Score = "
-                    f"{score:.4f}"
+
+                    f"K={k}"
+
+                    f" | Silhouette={silhouette:.4f}"
+
+                    f" | DB={db_score:.4f}"
+
+                    f" | CH={ch_score:.2f}"
                 )
 
         except Exception as error:
 
             print(
-                f"Error during silhouette "
-                f"analysis: {error}"
+                f"Error during clustering "
+                f"evaluation: {error}"
             )
 
     def train_final_model(
@@ -105,7 +128,7 @@ class ClusteringTrainer:
 
                 n_components=n_clusters,
 
-                covariance_type="diag",
+                covariance_type="full",
 
                 random_state=42
             )
@@ -116,11 +139,50 @@ class ClusteringTrainer:
                 )
             )
 
+            silhouette = (
+                silhouette_score(
+                    self.processed_dataframe,
+                    cluster_labels
+                )
+            )
+
+            db_score = (
+                davies_bouldin_score(
+                    self.processed_dataframe,
+                    cluster_labels
+                )
+            )
+
+            ch_score = (
+                calinski_harabasz_score(
+                    self.processed_dataframe,
+                    cluster_labels
+                )
+            )
+
             print(
-                f"\nFinal Gaussian "
-                f"Mixture Model trained "
-                f"successfully with "
-                f"K = {n_clusters}"
+                f"\nFinal GMM Model "
+                f"trained successfully "
+                f"with K={n_clusters}"
+            )
+
+            print(
+                f"\nFinal Metrics:"
+            )
+
+            print(
+                f"Silhouette Score : "
+                f"{silhouette:.4f}"
+            )
+
+            print(
+                f"Davies-Bouldin Score : "
+                f"{db_score:.4f}"
+            )
+
+            print(
+                f"Calinski-Harabasz Score : "
+                f"{ch_score:.2f}"
             )
 
             return cluster_labels

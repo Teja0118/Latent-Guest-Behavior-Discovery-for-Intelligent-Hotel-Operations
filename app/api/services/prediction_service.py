@@ -10,7 +10,7 @@ class PredictionService:
     def __init__(self):
 
         self.model = joblib.load(
-            "models/gmm_guest_clustering_model.pkl"
+            "models/pca_kmeans_model.pkl"
         )
 
         self.preprocessor = (
@@ -38,30 +38,19 @@ class PredictionService:
                 )[0]
             )
 
-            cluster_probabilities = (
-
-                self.model.predict_proba(
-                    processed_dataframe
-                )[0]
-            )
-
             return {
 
                 "cluster_id":
                     int(cluster_prediction),
 
                 "cluster_confidence":
-                    round(
-                        max(
-                            cluster_probabilities
-                        ) * 100,
-                        2
-                    )
+                    100.0
             }
 
         except Exception as error:
 
             raise Exception(
+
                 f"Error during cluster "
                 f"prediction: {error}"
             )

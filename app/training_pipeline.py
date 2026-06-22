@@ -5,6 +5,9 @@ from preprocessing.eda_analyzer import EDAAnalyzer
 from clustering.feature_selector import FeatureSelector
 from clustering.train_clustering import ClusteringTrainer
 from clustering.cluster_analyzer import ClusterAnalyzer
+from clustering.train_gmm_full import GMMFullTrainer
+from clustering.train_pca_gmm import PCAGMMTrainer
+from clustering.train_kmeans import KMeansTrainer
 from association_rules.transaction_builder import TransactionBuilder
 from association_rules.association_analysis import AssociationAnalyzer
 from recommendations.recommendation_engine import RecommendationEngine
@@ -103,6 +106,43 @@ def main():
             "data/clustered_hospitality_operations.csv"
         )
         
+        print("\n========== GMM FULL ==========\n")
+
+        gmm_full = GMMFullTrainer(
+            clustering_df
+        )
+
+        gmm_full.train(
+            n_clusters=4
+        )
+
+        gmm_full.save()
+
+        print("\n========== PCA GMM ==========\n")
+
+        pca_gmm = PCAGMMTrainer(
+            clustering_df
+        )
+
+        pca_gmm.train(
+            n_clusters=4
+        )
+
+        pca_gmm.save()
+
+        print("\n========== KMEANS ==========\n")
+
+        kmeans = KMeansTrainer(
+            clustering_df
+        )
+
+        kmeans.evaluate_k_range()
+
+        kmeans.train(
+            n_clusters=4
+        )
+
+        kmeans.save()
 
         # Association Rule
         transaction_builder = TransactionBuilder(df)
