@@ -1,0 +1,91 @@
+/* ---------------- ABOUT PAGE ---------------- */
+
+.about-card {
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+}
+
+.about-hero {
+
+    margin-bottom: 32px;
+}
+
+.about-hero h1 {
+
+    margin-bottom: 10px;
+
+    font-size: 30px;
+}
+
+.about-hero p {
+
+    color: #64748b;
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+.feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 18px;
+}
+
+.feature-card {
+
+    background: #f8fafc;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid #e2e8f0;
+
+    transition: all 0.25s ease;
+}
+
+.feature-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 10px 20px rgba(
+            124,
+            58,
+            237,
+            0.08
+        );
+}
+
+.feature-card h3 {
+
+    margin-top: 0;
+
+    color: #7c3aed;
+
+    font-size: 18px;
+}
+
+.feature-card p {
+
+    color: #64748b;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}

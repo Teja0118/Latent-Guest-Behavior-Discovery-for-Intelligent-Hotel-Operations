@@ -1,0 +1,224 @@
+/* ---------------- ANALYTICS ---------------- */
+
+.analytics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.analytics-card {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.05);
+
+    border-top:
+        4px solid #7c3aed;
+
+    position: relative;
+
+    overflow: hidden;
+
+    min-height: 95px;
+}
+
+.analytics-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+
+    height: 100px;
+
+    background:
+        rgba(124,58,237,0.05);
+
+    border-radius: 50%;
+
+    top: -30px;
+
+    right: -30px;
+}
+
+.analytics-card h3 {
+
+    margin-top: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.analytics-card p {
+
+    margin-bottom: 0;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: #7c3aed;
+}
+
+/* ---------------- ANALYTICS LAYOUT ---------------- */
+
+.analytics-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+/* ---------------- CHART ---------------- */
+
+.chart-container {
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 18px;
+
+    height: 460px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.chart-container h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 14px;
+
+    color: #7c3aed;
+
+    font-size: 20px;
+}
+
+.chart-container canvas {
+
+    flex: 1 !important;
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+    max-height: 360px !important;
+}
+
+/* ---------------- RECENT PREDICTIONS ---------------- */
+
+.recent-predictions-card {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+
+    height: 460px;
+
+    overflow-y: auto;
+}
+
+.recent-predictions-card h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 14px;
+
+    color: #7c3aed;
+
+    font-size: 20px;
+}
+
+.recent-predictions-card table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.recent-predictions-card th {
+
+    background: #faf5ff;
+
+    color: #7c3aed;
+
+    padding: 10px;
+
+    text-align: left;
+
+    font-size: 13px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+.recent-predictions-card td {
+
+    padding: 10px;
+
+    border-bottom:
+        1px solid #e2e8f0;
+
+    font-size: 13px;
+}
+
+.recent-predictions-card tr:hover {
+
+    background: #f8fafc;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media screen and (max-width: 1100px) {
+
+    .analytics-layout {
+
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container,
+    .recent-predictions-card {
+
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .chart-container {
+
+        height: 420px;
+    }
+}
