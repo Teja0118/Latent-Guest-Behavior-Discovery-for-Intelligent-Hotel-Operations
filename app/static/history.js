@@ -2,6 +2,8 @@ let allPredictions = [];
 
 let filteredPredictions = [];
 
+let historyTrendChart = null;
+
 let currentPage = 1;
 
 const recordsPerPage = 10;
@@ -21,7 +23,7 @@ async function loadRecentPredictions() {
         const response =
             await fetch(
 
-                "/analytics/recent-predictions",
+                "/history/all",
 
                 {
 
@@ -252,11 +254,284 @@ function setupSearch() {
     );
 }
 
+async function loadHistorySummary() {
+
+    try {
+
+        const token =
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/history/summary",
+
+                {
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+            "history-summary"
+        ).innerHTML = `
+
+            <div class="history-stat-card">
+
+                <h3>
+                    Total Records
+                </h3>
+
+                <p>
+                    ${data.total_records}
+                </p>
+
+            </div>
+
+            <div class="history-stat-card">
+
+                <h3>
+                    Top Cluster
+                </h3>
+
+                <p>
+                    ${data.top_cluster}
+                </p>
+
+            </div>
+
+            <div class="history-stat-card">
+
+                <h3>
+                    Latest Prediction
+                </h3>
+
+                <p>
+                    ${
+                        data.latest_prediction
+                        .split(" ")[0]
+                    }
+                </p>
+
+            </div>
+
+            <div class="history-stat-card">
+
+                <h3>
+                    Avg Confidence
+                </h3>
+
+                <p>
+                    ${data.average_confidence}%
+                </p>
+
+            </div>
+        `;
+
+    } catch(error) {
+
+        console.error(error);
+    }
+}
+
+async function loadPredictionTrend() {
+
+    try {
+
+        const token =
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/prediction-trends",
+
+                {
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        const labels =
+            data.map(
+                item => item.label
+            );
+
+        const values =
+            data.map(
+                item => item.confidence
+            );
+
+        const ctx =
+            document.getElementById(
+                "historyTrendChart"
+            );
+
+        if (
+            historyTrendChart
+        ) {
+
+            historyTrendChart.destroy();
+        }
+
+        historyTrendChart =
+            new Chart(
+                ctx,
+                {
+
+                    type: "line",
+
+                    data: {
+
+                        labels: labels,
+
+                        datasets: [
+
+                            {
+
+                                label:
+                                    "Confidence %",
+
+                                data: values,
+
+                                borderColor:
+                                    "#7c3aed",
+
+                                backgroundColor:
+                                    "rgba(124,58,237,0.15)",
+
+                                tension: 0.3,
+
+                                fill: true
+                            }
+                        ]
+                    },
+
+                    options: {
+
+                        responsive: true,
+
+                        maintainAspectRatio:
+                            false,
+
+                        plugins: {
+
+                            legend: {
+
+                                display: false
+                            }
+                        },
+
+                        scales: {
+
+                            y: {
+
+                                beginAtZero:
+                                    true,
+
+                                max: 100
+                            }
+                        }
+                    }
+                }
+            );
+
+    } catch(error) {
+
+        console.error(
+            error
+        );
+    }
+}
+
+function exportHistoryCSV() {
+
+    const token =
+
+        localStorage.getItem(
+            "access_token"
+        );
+
+    fetch(
+
+        "/history/export-csv",
+
+        {
+
+            headers: {
+
+                "Authorization":
+                    `Bearer ${token}`
+            }
+        }
+
+    )
+
+    .then(response => response.blob())
+
+    .then(blob => {
+
+        const url =
+            window.URL.createObjectURL(
+                blob
+            );
+
+        const link =
+            document.createElement(
+                "a"
+            );
+
+        link.href = url;
+
+        link.download =
+            "prediction_history.csv";
+
+        document.body.appendChild(
+            link
+        );
+
+        link.click();
+
+        link.remove();
+
+        window.URL
+            .revokeObjectURL(
+                url
+            );
+    });
+}
+
+loadHistorySummary();
+
+loadPredictionTrend();
+
 loadRecentPredictions();
 
 setupSearch();
 
-setInterval(
-    loadRecentPredictions,
-    15000
-);
+setInterval(() => {
+
+    loadHistorySummary();
+
+    loadPredictionTrend();
+
+    loadRecentPredictions();
+
+}, 15000);

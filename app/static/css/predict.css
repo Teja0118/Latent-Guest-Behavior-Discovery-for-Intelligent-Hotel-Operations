@@ -231,3 +231,87 @@ input[type=number] {
 
     appearance: textfield;
 }
+
+/* ---------------- PREDICTION META ---------------- */
+
+.prediction-meta {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 16px;
+
+    margin-bottom: 20px;
+}
+
+.meta-card {
+
+    background: #fafaff;
+
+    border:
+        1px solid #eef2ff;
+
+    border-radius: 16px;
+
+    padding: 18px;
+}
+
+.meta-card h4 {
+
+    margin: 0 0 8px;
+
+    color: #7c3aed;
+
+    font-size: 14px;
+}
+
+.meta-card p {
+
+    margin: 0;
+
+    color: #475569;
+
+    font-size: 14px;
+}
+
+/* ---------------- PROFILE SUMMARY ---------------- */
+
+.profile-description {
+
+    background: white;
+
+    border:
+        1px solid #eef2ff;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 4px 12px rgba(
+            0,
+            0,
+            0,
+            0.03
+        );
+}
+
+.profile-description h3 {
+
+    margin-top: 0;
+
+    color: #7c3aed;
+}
+
+.profile-description p {
+
+    margin-bottom: 0;
+
+    color: #475569;
+
+    line-height: 1.7;
+}

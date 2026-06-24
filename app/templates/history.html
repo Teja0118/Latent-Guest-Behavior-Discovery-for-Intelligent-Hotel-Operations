@@ -19,6 +19,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -28,6 +30,18 @@
         <h1>
             Hotel Guest Behavior Intelligence
         </h1>
+
+        <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+        >
+
+            <i
+                id="theme-icon"
+                class="fas fa-moon"
+            ></i>
+
+        </button>
 
     </div>
 
@@ -98,6 +112,41 @@
 
                 </div>
 
+                <div
+                    id="history-summary"
+                    class="history-summary-grid"
+                >
+
+                </div>
+
+
+                <div class="history-chart-card">
+
+                    <h2>
+                        Prediction Confidence Trend
+                    </h2>
+
+                    <canvas id="historyTrendChart">
+
+                    </canvas>
+
+                </div>
+
+                <div class="history-actions">
+
+                    <button
+                        class="export-btn"
+                        onclick="exportHistoryCSV()"
+                    >
+
+                        <i class="fas fa-file-csv"></i>
+
+                        Export CSV
+
+                    </button>
+
+                </div>
+
                 <div class="search-bar-container">
 
                     <input
@@ -126,6 +175,7 @@
     <script src="/static/history.js"></script>
     <script src="/static/auth_guard.js"></script>
     <script src="/static/auth.js"></script>
+    <script src="/static/theme.js"></script>
 </body>
 
 </html>

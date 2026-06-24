@@ -532,3 +532,534 @@ button:hover {
             #dc2626
         );
 }
+
+/* =====================================
+   DARK MODE
+===================================== */
+
+.theme-toggle {
+
+    margin-left: auto;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #f3f4f6;
+
+    color: #7c3aed;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 16px;
+}
+
+/* BODY */
+
+.dark-mode {
+
+    background: #0f172a;
+
+    color: #f8fafc;
+}
+
+/* NAVBAR */
+
+.dark-mode .top-navbar {
+
+    background: #1e293b;
+
+    border-bottom:
+        1px solid #334155;
+}
+
+/* SIDEBAR */
+
+.dark-mode .sidebar {
+
+    background: #1e293b;
+
+    border-right:
+        1px solid #334155;
+}
+
+.dark-mode .sidebar a {
+
+    color: #cbd5e1;
+}
+
+.dark-mode .sidebar a:hover {
+
+    background: #312e81;
+}
+
+/* MAIN CARDS */
+
+.dark-mode .analytics-card,
+.dark-mode .chart-container,
+.dark-mode .recent-predictions-card,
+.dark-mode .history-card,
+.dark-mode .about-card,
+.dark-mode .feature-card,
+.dark-mode .hero-card,
+.dark-mode .result-container,
+.dark-mode .form-container,
+.dark-mode .history-stat-card,
+.dark-mode .history-chart-card,
+.dark-mode .insight-card {
+
+    background: #1e293b;
+
+    color: #f8fafc;
+
+    border-color: #334155;
+}
+
+/* INPUTS */
+
+.dark-mode input {
+
+    background: #334155;
+
+    color: white;
+
+    border-color: #475569;
+}
+
+.dark-mode input::placeholder {
+
+    color: #94a3b8;
+}
+
+/* TABLE */
+
+.dark-mode th {
+
+    background: #312e81;
+}
+
+.dark-mode td {
+
+    border-color: #334155;
+}
+
+.dark-mode tr:hover {
+
+    background: #293548;
+}
+
+/* TEXT */
+
+.dark-mode p,
+.dark-mode td,
+.dark-mode li,
+.dark-mode span {
+
+    color: #e2e8f0;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3 {
+
+    color: #f8fafc;
+}
+
+/* PAGE HEADER */
+
+.dark-mode .page-header p {
+
+    color: #cbd5e1;
+}
+
+/* =========================
+   EXTRA DARK MODE SUPPORT
+========================= */
+
+.dark-mode .kpi-card,
+.dark-mode .history-stat-card,
+.dark-mode .history-chart-card,
+.dark-mode .trend-chart-container,
+.dark-mode .cluster-insights-container,
+.dark-mode .insight-card,
+.dark-mode .action-card,
+.dark-mode .intelligence-engine-card,
+.dark-mode .prediction-summary-card,
+.dark-mode .result-card,
+.dark-mode .history-table-container {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .kpi-card h3,
+.dark-mode .history-stat-card h3,
+.dark-mode .insight-card h3,
+.dark-mode .prediction-summary-card h3,
+.dark-mode .result-card h3 {
+
+    color: #c4b5fd !important;
+}
+
+.dark-mode .kpi-card p,
+.dark-mode .history-stat-card p,
+.dark-mode .insight-card p,
+.dark-mode .prediction-summary-card p,
+.dark-mode .result-card p {
+
+    color: #f8fafc !important;
+}
+
+.dark-mode #history-table tbody tr {
+
+    background: #1e293b !important;
+}
+
+.dark-mode #history-table td {
+
+    color: #f8fafc !important;
+
+    border-bottom:
+        1px solid #334155 !important;
+}
+
+.dark-mode .trend-chart-container {
+
+    background: #1e293b !important;
+}
+
+.dark-mode .cluster-insights-container {
+
+    background: #1e293b !important;
+}
+
+.dark-mode .search-input {
+
+    background: #334155 !important;
+
+    color: white !important;
+
+    border-color: #475569 !important;
+}
+
+.dark-mode .pagination-button {
+
+    background: #7c3aed !important;
+
+    color: white !important;
+}
+
+.dark-mode .pagination-info {
+
+    color: #e2e8f0 !important;
+}
+
+/* =========================
+   HOME PAGE DARK MODE
+========================= */
+
+.dark-mode .home-stat-card,
+.dark-mode .archetype-card,
+.dark-mode .model-info-card {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border: 1px solid #334155 !important;
+}
+
+.dark-mode .home-stat-card h3 {
+
+    color: #cbd5e1 !important;
+}
+
+.dark-mode .home-stat-card p {
+
+    color: #7c3aed !important;
+}
+
+.dark-mode .archetype-card h3 {
+
+    color: #a78bfa !important;
+}
+
+.dark-mode .archetype-card p {
+
+    color: #e2e8f0 !important;
+}
+
+.dark-mode .model-info-card h2 {
+
+    color: #a78bfa !important;
+}
+
+.dark-mode .model-info-card p {
+
+    color: #e2e8f0 !important;
+}
+
+.dark-mode .hero-content p {
+
+    color: #cbd5e1 !important;
+}
+
+.dark-mode .theme-toggle {
+
+    background: #334155;
+
+    color: #f8fafc;
+}
+
+/* =====================================
+   PREDICT PAGE DARK MODE
+===================================== */
+
+.dark-mode .confidence-box {
+
+    background: #1e293b !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .confidence-label {
+
+    color: #cbd5e1 !important;
+}
+
+.dark-mode .confidence-value {
+
+    color: #a78bfa !important;
+}
+
+.dark-mode .result-section {
+
+    background: #1e293b !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .result-section h3 {
+
+    color: #c4b5fd !important;
+}
+
+.dark-mode .result-section li {
+
+    color: #e2e8f0 !important;
+}
+
+.dark-mode .meta-card {
+
+    background: #1e293b !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .meta-card h4 {
+
+    color: #c4b5fd !important;
+}
+
+.dark-mode .meta-card p {
+
+    color: #f8fafc !important;
+}
+
+.dark-mode .profile-description {
+
+    background: #1e293b !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .profile-description h3 {
+
+    color: #c4b5fd !important;
+}
+
+.dark-mode .profile-description p {
+
+    color: #f8fafc !important;
+}
+
+/* =====================================
+   ANALYTICS TABLE DARK MODE HOVER
+===================================== */
+
+.dark-mode .recent-predictions-card tr:hover {
+
+    background: #334155 !important;
+}
+
+.dark-mode .recent-predictions-card td {
+
+    color: #f8fafc !important;
+}
+
+.dark-mode .recent-predictions-card th {
+
+    background: #312e81 !important;
+
+    color: #f8fafc !important;
+}
+
+/* =====================================
+   CLUSTER INSIGHTS DARK MODE
+===================================== */
+
+.dark-mode .insight-card {
+
+    background: #1e293b !important;
+
+    border-color: #334155 !important;
+}
+
+.dark-mode .insight-card h3 {
+
+    color: #c4b5fd !important;
+}
+
+.dark-mode .insight-card p {
+
+    color: #f8fafc !important;
+}
+
+.dark-mode .insight-status {
+
+    background: #7c3aed !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    font-weight: 700;
+}
+
+/* =====================================
+   ANALYTICS KPI ACCENT BORDER
+===================================== */
+
+.dark-mode .analytics-card{
+    
+    border-top:
+        4px solid #7c3aed !important;
+}
+
+.dark-mode .kpi-card {
+
+    border-left:
+        4px solid #7c3aed !important;
+}
+
+/* =====================================
+   HISTORY PAGE DARK MODE
+===================================== */
+
+.dark-mode .history-card {
+
+    background: #1e293b !important;
+
+    border: 1px solid #334155 !important;
+}
+
+.dark-mode #history-table th {
+
+    background: #312e81 !important;
+
+    color: #f8fafc !important;
+}
+
+.dark-mode #history-table tbody tr {
+
+    background: #1e293b !important;
+}
+
+.dark-mode #history-table tbody tr:hover {
+
+    transform: translateX(4px);
+}
+
+.dark-mode #history-table tbody tr:hover td {
+
+    background: #334155 !important;
+
+    color: #ffffff !important;
+}
+
+.dark-mode #history-table td {
+
+    background: #1e293b !important;
+
+    color: #f8fafc !important;
+
+    border-bottom:
+        1px solid #334155 !important;
+}
+
+.dark-mode .pagination-info {
+
+    color: #f8fafc !important;
+}
+
+.dark-mode .search-input {
+
+    background: #334155 !important;
+
+    color: #f8fafc !important;
+
+    border: 1px solid #475569 !important;
+}
+
+.dark-mode .search-input::placeholder {
+
+    color: #94a3b8 !important;
+}
+
+/* History KPI Cards */
+
+.dark-mode .history-stat-card {
+
+    background: #1e293b !important;
+
+    border-top:
+        4px solid #7c3aed !important;
+
+}
+
+.dark-mode .history-stat-card h3 {
+
+    color: #cbd5e1 !important;
+}
+
+.dark-mode .history-stat-card p {
+
+    color: #a78bfa !important;
+}
+
+/* History Trend Card */
+
+.dark-mode .history-chart-card {
+
+    background: #1e293b !important;
+
+    border: 1px solid #334155 !important;
+}
+
+.dark-mode .history-chart-card h2 {
+
+    color: #c4b5fd !important;
+}

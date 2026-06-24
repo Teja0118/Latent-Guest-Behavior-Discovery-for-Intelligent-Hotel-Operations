@@ -29,6 +29,18 @@
             Hotel Guest Behavior Intelligence
         </h1>
 
+        <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+        >
+
+            <i
+                id="theme-icon"
+                class="fas fa-moon"
+            ></i>
+
+        </button>
+
     </div>
 
     <div class="layout-container">
@@ -106,6 +118,21 @@
 
             </div>
 
+            <div class="kpi-section">
+
+                <h2>
+                    Operational Demand Indicators
+                </h2>
+
+                <div
+                    id="operational-kpis"
+                    class="kpi-grid"
+                >
+
+                </div>
+
+            </div>
+
             <div class="analytics-layout">
 
                 <div class="chart-container">
@@ -160,6 +187,40 @@
 
             </div>
 
+            <div class="trend-chart-container">
+
+                <h2>
+
+                    <h2>
+                        Confidence by Cluster
+                    </h2>
+
+                </h2>
+
+                <canvas
+                    id="trendChart"
+                >
+
+                </canvas>
+
+            </div>
+
+            <div class="cluster-insights-container">
+
+                <h2>
+
+                    Cluster Insights
+
+                </h2>
+
+                <div
+                    id="cluster-insights-grid"
+                    class="cluster-insights-grid"
+                >
+
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -170,6 +231,7 @@
 
     <script src="/static/auth_guard.js"></script>
     <script src="/static/auth.js"></script>
+    <script src="/static/theme.js"></script>
 </body>
 
 </html>

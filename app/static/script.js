@@ -199,6 +199,30 @@ function displayResult(data) {
     resultContainer.style.display =
         "block";
 
+    const currentTime =
+        new Date().toLocaleString();
+
+    const profileDescriptions = {
+
+        "Budget Casual Guests":
+            "Value-focused guests with moderate service usage and cost-conscious behavior.",
+
+        "Wellness Luxury Guests":
+            "Guests highly engaged with spa, gym, wellness, and premium relaxation services.",
+
+        "Family Leisure Guests":
+            "Family-oriented guests utilizing activities, tours, and children-focused services.",
+
+        "Business Travelers":
+            "Professionals leveraging concierge, transport, laundry, and business facilities.",
+
+        "Premium Dining Guests":
+            "Guests with strong dining preferences and high restaurant spending patterns.",
+
+        "Active Vacation Guests":
+            "Highly active guests engaging in recreation, tours, and adventure activities."
+    };
+
     resultContainer.innerHTML = `
 
         <div class="result-top-section">
@@ -224,6 +248,50 @@ function displayResult(data) {
                 </div>
 
             </div>
+
+        </div>
+
+        <div class="prediction-meta">
+
+            <div class="meta-card">
+
+                <h4>
+                    Prediction Time
+                </h4>
+
+                <p>
+                    ${currentTime}
+                </p>
+
+            </div>
+
+            <div class="meta-card">
+
+                <h4>
+                    Guest Archetype
+                </h4>
+
+                <p>
+                    ${data.cluster_name}
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="profile-description">
+
+            <h3>
+                Guest Profile Summary
+            </h3>
+
+            <p>
+
+                ${profileDescriptions[
+                    data.cluster_name
+                ] || "Guest profile identified."}
+
+            </p>
 
         </div>
 

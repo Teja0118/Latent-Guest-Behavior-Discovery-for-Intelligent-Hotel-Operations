@@ -73,6 +73,80 @@
     color: #7c3aed;
 }
 
+/* ---------------- KPI DASHBOARD ---------------- */
+
+.kpi-section {
+
+    margin-bottom: 24px;
+}
+
+.kpi-section h2 {
+
+    color: #7c3aed;
+
+    margin-bottom: 18px;
+
+    font-size: 22px;
+}
+
+.kpi-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                220px,
+                1fr
+            )
+        );
+
+    gap: 18px;
+}
+
+.kpi-card {
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+
+    border-left:
+        5px solid #7c3aed;
+}
+
+.kpi-card h3 {
+
+    margin-top: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.kpi-card p {
+
+    margin-bottom: 0;
+
+    margin-top: 12px;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #7c3aed;
+}
+
 /* ---------------- ANALYTICS LAYOUT ---------------- */
 
 .analytics-layout {
@@ -197,6 +271,158 @@
 .recent-predictions-card tr:hover {
 
     background: #f8fafc;
+}
+
+/* ---------------- TREND CHART ---------------- */
+
+.trend-chart-container {
+
+    margin-top: 24px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+
+    height: 420px;
+}
+
+.trend-chart-container h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 18px;
+
+    color: #7c3aed;
+
+    font-size: 20px;
+}
+
+.trend-chart-container canvas {
+
+    width: 100% !important;
+
+    height: 320px !important;
+}
+
+/* ---------------- CLUSTER INSIGHTS ---------------- */
+
+.cluster-insights-container {
+
+    margin-top: 24px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+}
+
+.cluster-insights-container h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 18px;
+
+    color: #7c3aed;
+}
+
+.cluster-insights-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                250px,
+                1fr
+            )
+        );
+
+    gap: 18px;
+}
+
+.insight-card {
+
+    background: #fafaff;
+
+    border:
+        1px solid #eef2ff;
+
+    border-radius: 16px;
+
+    padding: 18px;
+
+    transition: 0.25s ease;
+}
+
+.insight-card:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(
+            124,
+            58,
+            237,
+            0.08
+        );
+}
+
+.insight-card h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 12px;
+
+    color: #7c3aed;
+
+    font-size: 18px;
+}
+
+.insight-card p {
+
+    margin: 8px 0;
+
+    color: #475569;
+}
+
+.insight-status {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 6px 12px;
+
+    border-radius: 999px;
+
+    background: #ede9fe;
+
+    color: #7c3aed;
+
+    font-size: 12px;
+
+    font-weight: 700;
 }
 
 /* ---------------- RESPONSIVE ---------------- */

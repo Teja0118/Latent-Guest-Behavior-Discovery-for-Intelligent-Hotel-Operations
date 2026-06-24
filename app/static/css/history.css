@@ -3,6 +3,9 @@
 .search-bar-container {
 
     margin-bottom: 16px;
+    background: transparent;
+
+    padding: 0;
 }
 
 .search-input {
@@ -157,4 +160,160 @@
     color: #64748b;
 
     font-weight: 600;
+}
+
+/* ---------------- HISTORY SUMMARY ---------------- */
+
+.history-summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.history-stat-card {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 12px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+
+    border-top:
+        4px solid #7c3aed;
+}
+
+.history-stat-card h3 {
+
+    margin-top: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.history-stat-card p {
+
+    margin-bottom: 0;
+
+    margin-top: 12px;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: #7c3aed;
+}
+
+/* ---------------- HISTORY TREND CHART ---------------- */
+
+.history-chart-card {
+
+    background: white;
+
+    padding: 24px;
+
+    border-radius: 20px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+        0 4px 14px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+}
+
+.history-chart-card h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #7c3aed;
+
+    font-size: 20px;
+}
+
+.history-chart-card canvas {
+
+    width: 100% !important;
+
+    height: 320px !important;
+}
+
+/* ---------------- EXPORT ---------------- */
+
+.history-actions {
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+.export-btn {
+
+    background:
+        linear-gradient(
+            135deg,
+            #10b981,
+            #059669
+        );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.export-btn:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            16,
+            185,
+            129,
+            0.25
+        );
 }

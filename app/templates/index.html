@@ -34,6 +34,18 @@
             Hotel Guest Behavior Intelligence
         </h1>
 
+        <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+        >
+
+            <i
+                id="theme-icon"
+                class="fas fa-moon"
+            ></i>
+
+        </button>
+
     </div>
 
     <div class="layout-container">
@@ -110,36 +122,86 @@
 
                     <div class="hero-card">
 
-                        <h2>
-                            100K+
-                        </h2>
+                        <h2>100K+</h2>
 
-                        <p>
-                            Guest Records
-                        </p>
+                        <p>Guest Records</p>
 
                     </div>
 
                     <div class="hero-card">
 
-                        <h2>
-                            6
-                        </h2>
+                        <h2>6</h2>
 
-                        <p>
-                            Guest Archetypes
-                        </p>
+                        <p>Guest Archetypes</p>
 
                     </div>
 
                     <div class="hero-card">
 
-                        <h2>
-                            AI
-                        </h2>
+                        <h2>AI</h2>
 
-                        <p>
-                            Intelligence Engine
+                        <p>Intelligence Engine</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- LIVE STATS -->
+
+            <div class="home-section">
+
+                <h2>
+                    Live Platform Statistics
+                </h2>
+
+                <div class="home-stats-grid">
+
+                    <div class="home-stat-card">
+
+                        <h3>
+                            Total Predictions
+                        </h3>
+
+                        <p id="total-predictions">
+                            -
+                        </p>
+
+                    </div>
+
+                    <div class="home-stat-card">
+
+                        <h3>
+                            Guest Categories
+                        </h3>
+
+                        <p id="guest-categories">
+                            -
+                        </p>
+
+                    </div>
+
+                    <div class="home-stat-card">
+
+                        <h3>
+                            Top Segment
+                        </h3>
+
+                        <p id="top-cluster">
+                            -
+                        </p>
+
+                    </div>
+
+                    <div class="home-stat-card">
+
+                        <h3>
+                            Avg Confidence
+                        </h3>
+
+                        <p id="avg-confidence">
+                            -
                         </p>
 
                     </div>
@@ -148,11 +210,173 @@
 
             </div>
 
+            <!-- ARCHETYPES -->
+
+            <div class="home-section">
+
+                <h2>
+                    Guest Archetypes
+                </h2>
+
+                <div class="archetype-grid">
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Budget Casual Guests
+                        </h3>
+
+                        <p>
+                            Cost-conscious guests
+                            with basic service usage.
+                        </p>
+
+                    </div>
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Wellness Luxury Guests
+                        </h3>
+
+                        <p>
+                            High spa, wellness,
+                            and premium service usage.
+                        </p>
+
+                    </div>
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Family Leisure Guests
+                        </h3>
+
+                        <p>
+                            Family-focused guests
+                            using activities and tours.
+                        </p>
+
+                    </div>
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Business Travelers
+                        </h3>
+
+                        <p>
+                            Frequent business service
+                            and concierge usage.
+                        </p>
+
+                    </div>
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Premium Dining Guests
+                        </h3>
+
+                        <p>
+                            Dining-centric guests
+                            preferring premium food services.
+                        </p>
+
+                    </div>
+
+                    <div class="archetype-card">
+
+                        <h3>
+                            Active Vacation Guests
+                        </h3>
+
+                        <p>
+                            Recreation and adventure
+                            focused travelers.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="home-section">
+
+                <h2>
+                    Quick Actions
+                </h2>
+
+                <div class="quick-actions-grid">
+
+                    <a
+                        href="/predict"
+                        class="quick-action-card"
+                    >
+                        Predict Guest
+                    </a>
+
+                    <a
+                        href="/analytics"
+                        class="quick-action-card"
+                    >
+                        Analytics
+                    </a>
+
+                    <a
+                        href="/history"
+                        class="quick-action-card"
+                    >
+                        Prediction History
+                    </a>
+
+                    <a
+                        href="/about"
+                        class="quick-action-card"
+                    >
+                        About Project
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- MODEL INFO -->
+
+            <div class="model-info-card">
+
+                <h2>
+                    Intelligence Engine
+                </h2>
+
+                <p>
+                    PCA + KMeans Clustering
+                </p>
+
+                <p>
+                    102,432 Hospitality Records
+                </p>
+
+                <p>
+                    19 Engineered Features
+                </p>
+
+                <p>
+                    6 Guest Archetypes
+                </p>
+
+            </div>
+
         </div>
 
     </div>
     <script src="/static/auth_guard.js"></script>
     <script src="/static/auth.js"></script>
+    <script src="/static/home.js"></script>
+    <script src="/static/theme.js"></script>
 </body>
 
 </html>

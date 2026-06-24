@@ -1,12 +1,20 @@
 let clusterChart = null;
 
+let trendChart = null;
+
 async function loadAnalytics() {
 
     await loadSummary();
 
+    await loadOperationalKPIs();
+
     await loadClusterDistribution();
 
     await loadRecentPredictions();
+
+    await loadPredictionTrends();
+
+    await loadClusterInsights();
 }
 
 async function loadSummary() {
@@ -331,4 +339,274 @@ function formatTimestamp(timestamp) {
     return formatted
         .replace(" AM", " am")
         .replace(" PM", " pm");
+}
+
+async function loadPredictionTrends() {
+
+    try {
+
+        const token =
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/confidence-by-cluster",
+
+                {
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        const labels =
+            data.map(
+                item => item.cluster_name
+            );
+
+        const values =
+            data.map(
+                item => item.avg_confidence
+            );
+
+        const ctx =
+            document.getElementById(
+                "trendChart"
+            );
+
+        if (trendChart) {
+
+            trendChart.destroy();
+        }
+
+        trendChart = new Chart(ctx, {
+
+            type: "bar",
+
+            data: {
+
+                labels: labels,
+
+                datasets: [
+
+                    {
+
+                        label:
+                            "Average Confidence %",
+
+                        data: values,
+
+                        backgroundColor:
+                            "#7c3aed",
+
+                        borderRadius: 8
+                    }
+                ]
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true,
+
+                        max: 100
+                    }
+                }
+            }
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Confidence chart error:",
+            error
+        );
+    }
+}
+
+async function loadClusterInsights() {
+
+    try {
+
+        const token =
+
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/cluster-insights",
+
+                {
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        const container =
+
+            document.getElementById(
+                "cluster-insights-grid"
+            );
+
+        container.innerHTML = "";
+
+        data.forEach(item => {
+
+            container.innerHTML += `
+
+                <div class="insight-card">
+
+                    <h3>
+
+                        ${item.cluster_name}
+
+                    </h3>
+
+                    <p>
+
+                        Predictions:
+                        <strong>
+                            ${item.count}
+                        </strong>
+
+                    </p>
+
+                    <p>
+
+                        Share:
+                        <strong>
+                            ${item.percentage}%
+                        </strong>
+
+                    </p>
+
+                    <span
+                        class="insight-status"
+                    >
+
+                        ${item.status}
+
+                    </span>
+
+                </div>
+            `;
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Cluster insights error:",
+            error
+        );
+    }
+}
+
+async function loadOperationalKPIs() {
+
+    try {
+
+        const token =
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/operational-kpis",
+
+                {
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+            "operational-kpis"
+        ).innerHTML = `
+
+            <div class="kpi-card">
+
+                <h3>
+                    Dining Demand
+                </h3>
+
+                <p>
+                    ${data.dining_demand}%
+                </p>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <h3>
+                    Wellness Demand
+                </h3>
+
+                <p>
+                    ${data.wellness_demand}%
+                </p>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <h3>
+                    Family Demand
+                </h3>
+
+                <p>
+                    ${data.family_demand}%
+                </p>
+
+            </div>
+
+            <div class="kpi-card">
+
+                <h3>
+                    Business Demand
+                </h3>
+
+                <p>
+                    ${data.business_demand}%
+                </p>
+
+            </div>
+        `;
+
+    } catch(error) {
+
+        console.error(error);
+    }
 }

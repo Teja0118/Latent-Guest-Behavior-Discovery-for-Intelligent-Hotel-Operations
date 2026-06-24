@@ -166,3 +166,213 @@
 
     font-size: 14px;
 }
+
+.home-section {
+
+    margin-top: 50px;
+}
+
+.home-section h2 {
+
+    margin-bottom: 20px;
+
+    color: #7c3aed;
+}
+
+.home-stats-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.home-stat-card {
+
+    background: white;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+}
+
+.home-stat-card h3 {
+
+    color: #64748b;
+
+    margin-top: 0;
+}
+
+.home-stat-card p {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #7c3aed;
+}
+
+.archetype-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 20px;
+}
+
+.archetype-card {
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+
+    transition: 0.25s ease;
+}
+
+.archetype-card:hover {
+
+    transform: translateY(-4px);
+}
+
+.archetype-card h3 {
+
+    color: #7c3aed;
+
+    margin-top: 0;
+}
+
+.archetype-card p {
+
+    color: #64748b;
+
+    line-height: 1.6;
+}
+
+.quick-actions-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.quick-action-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #ec4899
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    font-weight: 700;
+
+    transition: 0.25s ease;
+}
+
+.quick-action-card:hover {
+
+    transform: translateY(-4px);
+}
+
+.model-info-card {
+
+    margin-top: 50px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,0.05);
+}
+
+.model-info-card h2 {
+
+    color: #7c3aed;
+
+    margin-top: 0;
+}
+
+.model-info-card p {
+
+    color: #64748b;
+
+    line-height: 1.8;
+}
+
+.home-stat-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.home-stat-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            124,
+            58,
+            237,
+            0.08
+        );
+
+    top: -40px;
+
+    right: -40px;
+}
+
+.home-stat-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 12px 28px rgba(
+            124,
+            58,
+            237,
+            0.18
+        );
+}
