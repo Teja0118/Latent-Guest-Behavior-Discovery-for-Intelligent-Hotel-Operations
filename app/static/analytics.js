@@ -12,7 +12,7 @@ async function loadAnalytics() {
 
     await loadRecentPredictions();
 
-    await loadPredictionTrends();
+    await loadOperationalDemandChart();
 
     await loadClusterInsights();
 }
@@ -609,4 +609,116 @@ async function loadOperationalKPIs() {
 
         console.error(error);
     }
+}
+
+async function loadOperationalDemandChart() {
+
+    const token =
+        localStorage.getItem(
+            "access_token"
+        );
+
+    const response =
+        await fetch(
+            "/analytics/operational-kpis",
+            {
+                headers: {
+                    "Authorization":
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+    const data =
+        await response.json();
+
+    const ctx =
+        document.getElementById(
+            "trendChart"
+        );
+
+    if (trendChart) {
+
+        trendChart.destroy();
+    }
+
+    trendChart = new Chart(ctx, {
+
+        type: "bar",
+
+        data: {
+
+            labels: [
+
+                "Dining",
+                "Wellness",
+                "Family",
+                "Business"
+
+            ],
+
+            datasets: [
+
+                {
+
+                    label: "Demand %",
+
+                    data: [
+
+                        data.dining_demand,
+                        data.wellness_demand,
+                        data.family_demand,
+                        data.business_demand
+
+                    ],
+
+                    backgroundColor: [
+
+                        "#7c3aed", // Dining
+                        "#ec4899", // Wellness
+                        "#10b981", // Family
+                        "#3b82f6"  // Business
+
+                    ],
+
+                    borderRadius: 10,
+
+                    borderWidth: 0
+                }
+            ]
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            indexAxis: "y",
+
+            plugins: {
+
+                legend: {
+
+                    display: false
+                }
+            },
+
+            scales: {
+
+                x: {
+
+                    beginAtZero: true,
+
+                    max: 100,
+
+                    ticks: {
+
+                        callback: value =>
+                            value + "%"
+                    }
+                }
+            }
+}
+    });
 }
