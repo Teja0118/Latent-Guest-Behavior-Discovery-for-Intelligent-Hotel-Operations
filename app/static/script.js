@@ -35,6 +35,13 @@ async function predictCluster() {
                 ).value || 0
             ),
 
+        room_service_spend_usd:
+            Number(
+                document.getElementById(
+                    "room_service_spend_usd"
+                ).value || 0
+            ),
+
         bar_lounge_visits:
             Number(
                 document.getElementById(
@@ -169,6 +176,13 @@ async function predictCluster() {
 
         const data = await response.json();
 
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail || "Prediction failed."
+            );
+        }
+
         displayResult(data);
 
         clearPredictionForm();
@@ -178,7 +192,7 @@ async function predictCluster() {
         console.error(error);
 
         alert(
-            "Prediction failed."
+            error.message || "Prediction failed."
         );
 
     } finally {
@@ -204,8 +218,8 @@ function displayResult(data) {
 
     const profileDescriptions = {
 
-        "Budget Casual Guests":
-            "Value-focused guests with moderate service usage and cost-conscious behavior.",
+        "Luxury Dining Guests":
+            "Guests with strong dining preferences and high restaurant or premium lounge spending patterns.",
 
         "Wellness Luxury Guests":
             "Guests highly engaged with spa, gym, wellness, and premium relaxation services.",
@@ -216,11 +230,11 @@ function displayResult(data) {
         "Business Travelers":
             "Professionals leveraging concierge, transport, laundry, and business facilities.",
 
-        "Premium Dining Guests":
-            "Guests with strong dining preferences and high restaurant spending patterns.",
+        "Budget Minimal Guests":
+            "Value-focused guests with low service usage and cost-conscious behavior.",
 
-        "Active Vacation Guests":
-            "Highly active guests engaging in recreation, tours, and adventure activities."
+        "Premium Family Business Guests":
+            "Guests combining family activity needs with premium business and concierge service usage."
     };
 
     resultContainer.innerHTML = `
@@ -237,13 +251,19 @@ function displayResult(data) {
 
                 <div class="confidence-label">
 
-                    Prediction Confidence
+                    Assignment Strength
 
                 </div>
 
                 <div class="confidence-value">
 
                     ${data.cluster_confidence}%
+
+                </div>
+
+                <div class="confidence-band">
+
+                    ${data.confidence_band || "Medium"}
 
                 </div>
 
@@ -303,7 +323,7 @@ function displayResult(data) {
 
             <ul>
 
-                ${data.recommendations
+                ${(data.recommendations || [])
                     .map(
                         recommendation =>
                         `<li>${recommendation}</li>`
@@ -322,7 +342,7 @@ function displayResult(data) {
 
             <ul>
 
-                ${data.operational_insights
+                ${(data.operational_insights || [])
                     .map(
                         insight =>
                         `<li>${insight}</li>`

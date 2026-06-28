@@ -47,6 +47,10 @@ class PredictionHistory(Base):
         Float
     )
 
+    room_service_spend_usd = Column(
+        Float
+    )
+
     bar_lounge_visits = Column(
         Float
     )
@@ -135,6 +139,12 @@ class User(Base):
     hashed_password = Column(
         String,
         nullable=False
+    )
+
+    role = Column(
+        String,
+        nullable=False,
+        default="hotel_user"
     )
 
     created_at = Column(

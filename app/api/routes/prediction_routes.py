@@ -107,6 +107,16 @@ def predict_cluster(
             "cluster_confidence":
                 confidence,
 
+            "cluster_assignment_strength":
+                prediction_result[
+                    "cluster_assignment_strength"
+                ],
+
+            "confidence_band":
+                prediction_result[
+                    "confidence_band"
+                ],
+
             "cluster_name":
                 cluster_details[
                     "cluster_name"

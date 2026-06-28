@@ -1,0 +1,508 @@
+/* =====================================
+   GLOBAL RESPONSIVE LAYOUT
+===================================== */
+
+* {
+
+    min-width: 0;
+}
+
+img,
+canvas,
+table {
+
+    max-width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .main-content {
+
+        padding: 18px;
+    }
+
+    .container {
+
+        max-width: 100%;
+    }
+
+    .hero-section {
+
+        gap: 28px;
+    }
+
+    .hero-content h1 {
+
+        font-size: 36px;
+    }
+
+    .analytics-layout,
+    .admin-layout {
+
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container,
+    .recent-predictions-card {
+
+        height: auto;
+        min-height: 380px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .top-navbar {
+
+        height: auto;
+        min-height: 64px;
+        gap: 12px;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        position: static;
+    }
+
+    .top-navbar h1 {
+
+        font-size: 19px;
+        flex: 1 1 260px;
+    }
+
+    .current-user-badge {
+
+        order: 2;
+        margin-left: 0;
+        margin-right: 0;
+        flex: 1 1 auto;
+        justify-content: flex-start;
+    }
+
+    .theme-toggle {
+
+        order: 1;
+        flex: 0 0 42px;
+    }
+
+    .layout-container {
+
+        display: block;
+        min-height: auto;
+    }
+
+    .sidebar {
+
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: auto;
+        z-index: 950;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 10px;
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+        scrollbar-width: thin;
+    }
+
+    .sidebar a {
+
+        flex: 0 0 auto;
+        margin: 0;
+        padding: 11px 14px;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+    .sidebar a:hover {
+
+        transform: translateY(-1px);
+    }
+
+    .logout-link {
+
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        margin-left: 8px !important;
+    }
+
+    .main-content {
+
+        margin-left: 0;
+        padding: 18px 16px 28px;
+    }
+
+    .page-header {
+
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .page-header h1 {
+
+        font-size: 26px;
+    }
+
+    .header-badge {
+
+        align-self: flex-start;
+    }
+
+    .hero-section {
+
+        min-height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        padding-top: 18px;
+    }
+
+    .hero-section::before {
+
+        display: none;
+    }
+
+    .hero-stats {
+
+        display: grid;
+        grid-template-columns:
+            repeat(auto-fit, minmax(170px, 1fr));
+    }
+
+    .hero-card {
+
+        min-width: 0;
+    }
+
+    .home-section,
+    .model-info-card {
+
+        margin-top: 34px;
+    }
+
+    .form-container,
+    .result-container,
+    .about-card,
+    .model-info-card,
+    .history-chart-card,
+    .history-card,
+    .admin-panel,
+    .chart-container,
+    .recent-predictions-card,
+    .trend-chart-container,
+    .cluster-insights-container {
+
+        border-radius: 16px;
+        padding: 18px;
+    }
+
+    .prediction-meta {
+
+        grid-template-columns: 1fr;
+    }
+
+    .result-top-section {
+
+        align-items: stretch;
+    }
+
+    .confidence-box {
+
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .history-actions {
+
+        justify-content: stretch;
+    }
+
+    .history-actions .export-btn {
+
+        width: 100%;
+        justify-content: center;
+    }
+
+    .admin-table-header {
+
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .admin-table-header input {
+
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    body {
+
+        font-size: 13px;
+    }
+
+    .top-navbar {
+
+        padding: 10px 12px;
+    }
+
+    .top-navbar h1 {
+
+        font-size: 18px;
+        flex-basis: 220px;
+    }
+
+    .current-user-badge {
+
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .current-user-badge span {
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .sidebar {
+
+        padding: 8px;
+    }
+
+    .sidebar a {
+
+        gap: 8px;
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .main-content {
+
+        padding: 16px 12px 24px;
+    }
+
+    .page-header h1,
+    .hero-content h1 {
+
+        font-size: 24px;
+    }
+
+    .page-header p,
+    .hero-content p {
+
+        font-size: 13px;
+    }
+
+    .home-stats-grid,
+    .archetype-grid,
+    .quick-actions-grid,
+    .analytics-grid,
+    .kpi-grid,
+    .history-summary-grid,
+    .admin-summary-grid,
+    .feature-grid,
+    .admin-form-grid {
+
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-container {
+
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-container h2 {
+
+        font-size: 16px;
+    }
+
+    .cluster-pill {
+
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .confidence-value {
+
+        font-size: 28px;
+    }
+
+    .chart-container canvas {
+
+        max-height: 280px !important;
+    }
+
+    .trend-chart-container,
+    .history-chart-card {
+
+        height: auto;
+    }
+
+    .trend-chart-container canvas,
+    .history-chart-card canvas {
+
+        height: 260px !important;
+    }
+
+    .history-card,
+    .admin-table-wrapper,
+    .recent-predictions-card {
+
+        overflow-x: auto;
+    }
+
+    #history-table,
+    .admin-table-wrapper table,
+    .recent-predictions-card table {
+
+        min-width: 620px;
+    }
+
+    .pagination-container {
+
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-button {
+
+        flex: 1 1 110px;
+    }
+
+    .admin-actions {
+
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .role-select {
+
+        width: 100%;
+    }
+
+    .icon-button {
+
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .top-navbar h1 {
+
+        font-size: 16px;
+    }
+
+    .theme-toggle {
+
+        width: 38px;
+        height: 38px;
+    }
+
+    .current-user-badge {
+
+        gap: 8px;
+    }
+
+    .current-user-badge strong {
+
+        padding: 5px 8px;
+    }
+
+    .sidebar a {
+
+        padding: 9px 10px;
+    }
+
+    .sidebar a i {
+
+        width: 16px;
+        min-width: 16px;
+    }
+
+    .main-content {
+
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .page-header h1,
+    .hero-content h1 {
+
+        font-size: 22px;
+    }
+
+    .hero-button,
+    .quick-action-card,
+    .form-container button,
+    .admin-panel button {
+
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .home-stat-card,
+    .archetype-card,
+    .hero-card,
+    .feature-card,
+    .analytics-card,
+    .kpi-card,
+    .history-stat-card,
+    .admin-summary-card {
+
+        padding: 18px;
+    }
+
+    .about-card,
+    .form-container,
+    .result-container,
+    .admin-panel,
+    .history-chart-card,
+    .history-card,
+    .model-info-card {
+
+        padding: 16px;
+    }
+
+    .search-input,
+    .admin-table-header input {
+
+        width: 100%;
+    }
+
+    .toast {
+
+        left: 10px;
+        right: 10px;
+        top: 10px;
+        min-width: 0;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .sidebar a {
+
+        font-size: 12px;
+    }
+
+    .current-user-badge {
+
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-header h1,
+    .hero-content h1 {
+
+        font-size: 20px;
+    }
+}

@@ -68,6 +68,13 @@ class InferencePreprocessor:
                 guest_data[
                     "restaurant_spend_usd"
                 ]
+
+                +
+
+                guest_data.get(
+                    "room_service_spend_usd",
+                    0
+                )
             )
 
             guest_data[

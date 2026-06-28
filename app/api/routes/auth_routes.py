@@ -17,6 +17,10 @@ from api.schemas.user_schema import (
     LoginSchema
 )
 
+from api.services.auth_dependency import (
+    get_current_user
+)
+
 from api.services.security_service import (
     hash_password
 )
@@ -73,14 +77,22 @@ def register_user(
             detail="Email already exists"
         )
 
-    print("PASSWORD:", user.password)
-    print("LENGTH:", len(user.password))
+    existing_user_count = (
+        db.query(User)
+        .count()
+    )
 
     new_user = User(
 
         name=user.name,
 
         email=user.email,
+
+        role=(
+            "admin"
+            if existing_user_count == 0
+            else "hotel_user"
+        ),
 
         hashed_password=hash_password(
             user.password
@@ -94,7 +106,10 @@ def register_user(
     return {
 
         "message":
-            "Registration successful"
+            "Registration successful",
+
+        "role":
+            new_user.role
     }
 
 @router.post("/login")
@@ -151,7 +166,46 @@ def login(
 
         "access_token": token,
 
-        "token_type": "bearer"
+        "token_type": "bearer",
+
+        "user": {
+
+            "id":
+                user.id,
+
+            "name":
+                user.name,
+
+            "email":
+                user.email,
+
+            "role":
+                user.role
+        }
+    }
+
+
+@router.get("/me")
+def get_me(
+
+    current_user: User = Depends(
+        get_current_user
+    )
+):
+
+    return {
+
+        "id":
+            current_user.id,
+
+        "name":
+            current_user.name,
+
+        "email":
+            current_user.email,
+
+        "role":
+            current_user.role
     }
 
 '''

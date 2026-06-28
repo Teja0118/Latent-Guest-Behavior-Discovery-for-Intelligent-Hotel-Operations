@@ -70,3 +70,49 @@ class LoginSchema(BaseModel):
     email: EmailStr
 
     password: str
+
+
+class AdminCreateUserSchema(RegisterUserSchema):
+
+    role: str = "hotel_user"
+
+    @field_validator("role")
+    @classmethod
+    def validate_role(
+        cls,
+        value
+    ):
+
+        if value not in {
+            "admin",
+            "hotel_user"
+        }:
+
+            raise ValueError(
+                "Role must be admin or hotel_user"
+            )
+
+        return value
+
+
+class UserRoleUpdateSchema(BaseModel):
+
+    role: str
+
+    @field_validator("role")
+    @classmethod
+    def validate_role(
+        cls,
+        value
+    ):
+
+        if value not in {
+            "admin",
+            "hotel_user"
+        }:
+
+            raise ValueError(
+                "Role must be admin or hotel_user"
+            )
+
+        return value

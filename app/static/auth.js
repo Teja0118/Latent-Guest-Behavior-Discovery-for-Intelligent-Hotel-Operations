@@ -282,6 +282,11 @@ async function loginUser() {
         data.access_token
     );
 
+    localStorage.setItem(
+        "current_user",
+        JSON.stringify(data.user)
+    );
+
     showToast(
         "Login Successful ✓"
     );
@@ -298,6 +303,10 @@ function logout() {
 
     localStorage.removeItem(
         "access_token"
+    );
+
+    localStorage.removeItem(
+        "current_user"
     );
 
     window.location.href =

@@ -1,0 +1,7 @@
+Model,Silhouette,DB Index,CH Score,Notes
+KMeans,0.23408602322067204,1.4100431061720522,23832.669648861265,"Current baseline: centroid model, supports predict. Confidence: distance-margin or calibrated soft assignment from centroid distances; not a true probability. Clusters=6, size range=12751-20586"
+MiniBatch KMeans,0.18582279776508628,1.7574694123563404,19745.40357582357,"Fast centroid baseline variant; supports predict. Confidence: distance-margin or calibrated soft assignment from centroid distances; not a true probability. Clusters=6, size range=7325-29316"
+Agglomerative Clustering,0.1668957541181486,1.6780733751528842,18116.902966447735,"Hierarchical structure; no native predict/probability. Confidence: no native probability/predict interface for new guests. Clusters=6, size range=8993-23983"
+HDBSCAN,0.03283850661758465,2.5741741655492434,2577.8438437551813,"Density model; reports membership strength for fitted samples. Confidence: native membership strength available for fitted samples, median=0.734. Noise=11.35% Clusters=4, size range=239-72420"
+Spectral Clustering,,,,Skipped for full 102k-row dataset: graph-based model is computationally expensive and has no native predict method. Evaluate separately on a fixed sample only if required.
+Birch,,,,Incremental CF-tree model; supports predict after fitting. Evaluation failed on full dataset: MemoryError: unable to allocate array data.

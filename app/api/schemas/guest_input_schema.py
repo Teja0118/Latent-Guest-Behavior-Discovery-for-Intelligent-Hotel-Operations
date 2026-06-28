@@ -11,6 +11,8 @@ class GuestInputSchema(BaseModel):
 
     room_service_orders: float = Field(default=0)
 
+    room_service_spend_usd: float = Field(default=0)
+
     bar_lounge_visits: float = Field(default=0)
 
     spa_treatments_count: float = Field(default=0)

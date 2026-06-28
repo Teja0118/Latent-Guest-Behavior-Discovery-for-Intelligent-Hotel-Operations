@@ -19,7 +19,15 @@ class HistoryService:
 
             cleaned_guest_data = {}
 
+            history_columns = {
+                column.name
+                for column in PredictionHistory.__table__.columns
+            }
+
             for key, value in guest_data.items():
+
+                if key not in history_columns:
+                    continue
 
                 if value in [
                     None,

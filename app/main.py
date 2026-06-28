@@ -18,10 +18,17 @@ from api.routes.auth_routes import (
     router as auth_router
 )
 
+from api.routes.admin_routes import (
+    router as admin_router
+)
+
 from database.database import Base
 from database.database import engine
 
 from database import models
+from database.ensure_rbac_schema import (
+    ensure_application_schema
+)
 
 app = FastAPI(
     title="Hotel Guest Behavior Intelligence"
@@ -30,6 +37,8 @@ app = FastAPI(
 Base.metadata.create_all(
     bind=engine
 )
+
+ensure_application_schema()
 
 app.mount(
     "/static",
@@ -51,6 +60,10 @@ app.include_router(
 
 app.include_router(
     auth_router
+)
+
+app.include_router(
+    admin_router
 )
 
 
@@ -133,4 +146,15 @@ def about_page(
     return templates.TemplateResponse(
         request=request,
         name="about.html"
+    )
+
+
+@app.get("/admin")
+def admin_page(
+    request: Request
+):
+
+    return templates.TemplateResponse(
+        request=request,
+        name="admin.html"
     )

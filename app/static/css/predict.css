@@ -167,6 +167,25 @@
     font-weight: 800;
 }
 
+.confidence-band {
+
+    display: inline-block;
+
+    margin-top: 8px;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background: #f1f5f9;
+
+    color: #475569;
+
+    font-size: 12px;
+
+    font-weight: 700;
+}
+
 .result-section {
 
     margin-top: 18px;

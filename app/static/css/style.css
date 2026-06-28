@@ -37,7 +37,7 @@ body {
 
 .top-navbar h1 {
 
-    margin: 0;
+    margin: 0 auto 0 0;
 
     font-size: 22px;
 
@@ -55,6 +55,38 @@ body {
     -webkit-text-fill-color: transparent;
 
     color: #7c3aed;
+}
+
+.current-user-badge {
+
+    margin-left: auto;
+
+    margin-right: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.current-user-badge strong {
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: #f3e8ff;
+
+    color: #7c3aed;
+
+    font-size: 12px;
 }
 
 /* ---------------- LAYOUT ---------------- */
@@ -539,7 +571,7 @@ button:hover {
 
 .theme-toggle {
 
-    margin-left: auto;
+    margin-left: 0;
 
     width: 42px;
 

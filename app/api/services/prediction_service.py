@@ -62,13 +62,6 @@ class PredictionService:
                 "========================\n"
             )
 
-            distances = (
-
-                self.model.transform(
-                    processed_dataframe
-                )[0]
-            )
-
             sorted_distances = sorted(
                 distances
             )
@@ -81,7 +74,7 @@ class PredictionService:
                 sorted_distances[1]
             )
 
-            confidence = round(
+            confidence = float(round(
 
                 (
                     second_nearest_distance
@@ -94,7 +87,14 @@ class PredictionService:
                 ) * 100,
 
                 2
-            )
+            ))
+
+            if confidence < 56:
+                confidence_band = "Low"
+            elif confidence < 67:
+                confidence_band = "Medium"
+            else:
+                confidence_band = "High"
 
             return {
 
@@ -104,7 +104,13 @@ class PredictionService:
                     ),
 
                 "cluster_confidence":
-                    confidence
+                    confidence,
+
+                "cluster_assignment_strength":
+                    confidence,
+
+                "confidence_band":
+                    confidence_band
             }
 
         except Exception as error:
