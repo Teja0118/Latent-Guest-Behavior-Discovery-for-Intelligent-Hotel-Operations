@@ -208,12 +208,6 @@ table {
         align-items: stretch;
     }
 
-    .confidence-box {
-
-        width: 100%;
-        box-sizing: border-box;
-    }
-
     .history-actions {
 
         justify-content: stretch;
@@ -327,11 +321,6 @@ table {
         width: 100%;
         box-sizing: border-box;
         text-align: center;
-    }
-
-    .confidence-value {
-
-        font-size: 28px;
     }
 
     .chart-container canvas {

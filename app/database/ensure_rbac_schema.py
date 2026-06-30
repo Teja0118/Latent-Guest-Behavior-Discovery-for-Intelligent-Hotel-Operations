@@ -27,6 +27,30 @@ def ensure_application_schema(
                 )
             )
 
+            connection.execute(
+                text(
+                    "ALTER TABLE prediction_history "
+                    "ADD COLUMN IF NOT EXISTS "
+                    "user_id INTEGER"
+                )
+            )
+
+            connection.execute(
+                text(
+                    "ALTER TABLE prediction_history "
+                    "ADD COLUMN IF NOT EXISTS "
+                    "top_recommendation VARCHAR"
+                )
+            )
+
+            connection.execute(
+                text(
+                    "ALTER TABLE prediction_history "
+                    "ADD COLUMN IF NOT EXISTS "
+                    "operational_focus VARCHAR"
+                )
+            )
+
         connection.execute(
             text(
                 "ALTER TABLE users "

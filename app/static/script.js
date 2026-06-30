@@ -239,33 +239,21 @@ function displayResult(data) {
 
     resultContainer.innerHTML = `
 
+        <button
+            type="button"
+            class="result-close-button"
+            onclick="hidePredictionResult()"
+            aria-label="Close prediction result"
+            title="Close"
+        >
+            <i class="fas fa-xmark"></i>
+        </button>
+
         <div class="result-top-section">
 
             <div class="cluster-pill">
 
                 ${data.cluster_name}
-
-            </div>
-
-            <div class="confidence-box">
-
-                <div class="confidence-label">
-
-                    Assignment Strength
-
-                </div>
-
-                <div class="confidence-value">
-
-                    ${data.cluster_confidence}%
-
-                </div>
-
-                <div class="confidence-band">
-
-                    ${data.confidence_band || "Medium"}
-
-                </div>
 
             </div>
 
@@ -353,6 +341,20 @@ function displayResult(data) {
 
         </div>
     `;
+}
+
+function hidePredictionResult() {
+
+    const resultContainer =
+        document.getElementById(
+            "result-container"
+        );
+
+    resultContainer.style.display =
+        "none";
+
+    resultContainer.innerHTML =
+        "";
 }
 
 function clearPredictionForm() {

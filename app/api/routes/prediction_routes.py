@@ -80,6 +80,14 @@ def predict_cluster(
             )
         )
 
+        operational_insights = (
+
+            operational_service
+            .get_operational_insights(
+                cluster_id
+            )
+        )
+
         history_service.save_prediction(
 
             guest_data.model_dump(),
@@ -88,14 +96,24 @@ def predict_cluster(
 
             cluster_details[
                 "cluster_name"
-            ]
-        )
+            ],
 
-        operational_insights = (
+            user_id=current_user.id,
 
-            operational_service
-            .get_operational_insights(
-                cluster_id
+            top_recommendation=(
+                cluster_details[
+                    "recommendations"
+                ][0]
+                if cluster_details[
+                    "recommendations"
+                ]
+                else None
+            ),
+
+            operational_focus=(
+                operational_insights[0]
+                if operational_insights
+                else None
             )
         )
 

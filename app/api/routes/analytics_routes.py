@@ -162,9 +162,13 @@ def export_history_csv(
 
     writer.writerow([
 
+        "User",
+
         "Cluster",
 
-        "Confidence",
+        "Top Recommendation",
+
+        "Operational Focus",
 
         "Created At"
     ])
@@ -173,9 +177,13 @@ def export_history_csv(
 
         writer.writerow([
 
+            row["user_name"],
+
             row["cluster_name"],
 
-            row["confidence"],
+            row["top_recommendation"],
+
+            row["operational_focus"],
 
             row["created_at"]
         ])

@@ -42,9 +42,9 @@ async function loadHomeStats() {
             data.top_cluster;
 
         document.getElementById(
-            "avg-confidence"
+            "model-type"
         ).innerText =
-            data.average_confidence + "%";
+            "PCA + KMeans";
 
     } catch (error) {
 

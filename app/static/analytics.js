@@ -69,18 +69,6 @@ async function loadSummary() {
         <div class="analytics-card">
 
             <h3>
-                Average Confidence
-            </h3>
-
-            <p>
-                ${data.average_confidence}%
-            </p>
-
-        </div>
-
-        <div class="analytics-card">
-
-            <h3>
                 Guest Categories
             </h3>
 
@@ -258,7 +246,7 @@ async function loadRecentPredictions() {
 
                 <tr>
 
-                    <td colspan="3">
+                    <td colspan="2">
 
                         No predictions available
 
@@ -278,10 +266,6 @@ async function loadRecentPredictions() {
 
                     <td>
                         ${item.cluster_name}
-                    </td>
-
-                    <td>
-                        ${item.confidence}%
                     </td>
 
                     <td>
@@ -339,103 +323,6 @@ function formatTimestamp(timestamp) {
     return formatted
         .replace(" AM", " am")
         .replace(" PM", " pm");
-}
-
-async function loadPredictionTrends() {
-
-    try {
-
-        const token =
-            localStorage.getItem(
-                "access_token"
-            );
-
-        const response =
-            await fetch(
-
-                "/analytics/confidence-by-cluster",
-
-                {
-                    headers: {
-                        "Authorization":
-                            `Bearer ${token}`
-                    }
-                }
-            );
-
-        const data =
-            await response.json();
-
-        const labels =
-            data.map(
-                item => item.cluster_name
-            );
-
-        const values =
-            data.map(
-                item => item.avg_confidence
-            );
-
-        const ctx =
-            document.getElementById(
-                "trendChart"
-            );
-
-        if (trendChart) {
-
-            trendChart.destroy();
-        }
-
-        trendChart = new Chart(ctx, {
-
-            type: "bar",
-
-            data: {
-
-                labels: labels,
-
-                datasets: [
-
-                    {
-
-                        label:
-                            "Average Confidence %",
-
-                        data: values,
-
-                        backgroundColor:
-                            "#7c3aed",
-
-                        borderRadius: 8
-                    }
-                ]
-            },
-
-            options: {
-
-                responsive: true,
-
-                maintainAspectRatio: false,
-
-                scales: {
-
-                    y: {
-
-                        beginAtZero: true,
-
-                        max: 100
-                    }
-                }
-            }
-        });
-
-    } catch (error) {
-
-        console.error(
-            "Confidence chart error:",
-            error
-        );
-    }
 }
 
 async function loadClusterInsights() {

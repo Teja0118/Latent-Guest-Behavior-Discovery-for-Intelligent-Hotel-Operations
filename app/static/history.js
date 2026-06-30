@@ -2,8 +2,6 @@ let allPredictions = [];
 
 let filteredPredictions = [];
 
-let historyTrendChart = null;
-
 let currentPage = 1;
 
 const recordsPerPage = 10;
@@ -108,10 +106,6 @@ function renderTable() {
                 </th>
 
                 <th>
-                    Confidence
-                </th>
-
-                <th>
                     Timestamp
                 </th>
 
@@ -127,10 +121,6 @@ function renderTable() {
 
                     <td>
                         ${item.cluster_name}
-                    </td>
-
-                    <td>
-                        ${item.confidence}%
                     </td>
 
                     <td>
@@ -231,6 +221,11 @@ function setupSearch() {
             ".search-input"
         );
 
+    const clearButton =
+        document.querySelector(
+            ".history-search-clear"
+        );
+
     searchInput.addEventListener(
         "input",
         event => {
@@ -249,9 +244,41 @@ function setupSearch() {
 
             currentPage = 1;
 
+            clearButton.style.display =
+                query
+                    ? "inline-flex"
+                    : "none";
+
             renderTable();
         }
     );
+}
+
+function clearHistorySearch() {
+
+    const searchInput =
+        document.querySelector(
+            ".search-input"
+        );
+
+    const clearButton =
+        document.querySelector(
+            ".history-search-clear"
+        );
+
+    searchInput.value = "";
+
+    clearButton.style.display =
+        "none";
+
+    filteredPredictions =
+        allPredictions;
+
+    currentPage = 1;
+
+    renderTable();
+
+    searchInput.focus();
 }
 
 async function loadHistorySummary() {
@@ -323,141 +350,11 @@ async function loadHistorySummary() {
 
             </div>
 
-            <div class="history-stat-card">
-
-                <h3>
-                    Avg Confidence
-                </h3>
-
-                <p>
-                    ${data.average_confidence}%
-                </p>
-
-            </div>
         `;
 
     } catch(error) {
 
         console.error(error);
-    }
-}
-
-async function loadPredictionTrend() {
-
-    try {
-
-        const token =
-            localStorage.getItem(
-                "access_token"
-            );
-
-        const response =
-            await fetch(
-
-                "/analytics/prediction-trends",
-
-                {
-
-                    headers: {
-
-                        "Authorization":
-                            `Bearer ${token}`
-                    }
-                }
-            );
-
-        const data =
-            await response.json();
-
-        const labels =
-            data.map(
-                item => item.label
-            );
-
-        const values =
-            data.map(
-                item => item.confidence
-            );
-
-        const ctx =
-            document.getElementById(
-                "historyTrendChart"
-            );
-
-        if (
-            historyTrendChart
-        ) {
-
-            historyTrendChart.destroy();
-        }
-
-        historyTrendChart =
-            new Chart(
-                ctx,
-                {
-
-                    type: "line",
-
-                    data: {
-
-                        labels: labels,
-
-                        datasets: [
-
-                            {
-
-                                label:
-                                    "Confidence %",
-
-                                data: values,
-
-                                borderColor:
-                                    "#7c3aed",
-
-                                backgroundColor:
-                                    "rgba(124,58,237,0.15)",
-
-                                tension: 0.3,
-
-                                fill: true
-                            }
-                        ]
-                    },
-
-                    options: {
-
-                        responsive: true,
-
-                        maintainAspectRatio:
-                            false,
-
-                        plugins: {
-
-                            legend: {
-
-                                display: false
-                            }
-                        },
-
-                        scales: {
-
-                            y: {
-
-                                beginAtZero:
-                                    true,
-
-                                max: 100
-                            }
-                        }
-                    }
-                }
-            );
-
-    } catch(error) {
-
-        console.error(
-            error
-        );
     }
 }
 
@@ -520,8 +417,6 @@ function exportHistoryCSV() {
 
 loadHistorySummary();
 
-loadPredictionTrend();
-
 loadRecentPredictions();
 
 setupSearch();
@@ -529,8 +424,6 @@ setupSearch();
 setInterval(() => {
 
     loadHistorySummary();
-
-    loadPredictionTrend();
 
     loadRecentPredictions();
 

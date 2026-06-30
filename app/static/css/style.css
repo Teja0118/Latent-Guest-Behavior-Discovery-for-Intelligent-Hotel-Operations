@@ -856,32 +856,25 @@ button:hover {
     color: #f8fafc;
 }
 
-/* =====================================
-   PREDICT PAGE DARK MODE
-===================================== */
-
-.dark-mode .confidence-box {
-
-    background: #1e293b !important;
-
-    border-color: #334155 !important;
-}
-
-.dark-mode .confidence-label {
-
-    color: #cbd5e1 !important;
-}
-
-.dark-mode .confidence-value {
-
-    color: #a78bfa !important;
-}
-
 .dark-mode .result-section {
 
     background: #1e293b !important;
 
     border-color: #334155 !important;
+}
+
+.dark-mode .result-close-button {
+
+    background: #334155 !important;
+
+    color: #f8fafc !important;
+
+    border-color: #475569 !important;
+}
+
+.dark-mode .result-close-button:hover {
+
+    background: #312e81 !important;
 }
 
 .dark-mode .result-section h3 {
@@ -1059,6 +1052,18 @@ button:hover {
 .dark-mode .search-input::placeholder {
 
     color: #94a3b8 !important;
+}
+
+.dark-mode .history-search-clear {
+
+    color: #cbd5e1 !important;
+}
+
+.dark-mode .history-search-clear:hover {
+
+    background: #334155 !important;
+
+    color: #f8fafc !important;
 }
 
 /* History KPI Cards */

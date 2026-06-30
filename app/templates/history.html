@@ -24,8 +24,6 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
@@ -125,18 +123,6 @@
                 </div>
 
 
-                <div class="history-chart-card">
-
-                    <h2>
-                        Prediction Confidence Trend
-                    </h2>
-
-                    <canvas id="historyTrendChart">
-
-                    </canvas>
-
-                </div>
-
                 <div class="history-actions">
 
                     <button
@@ -154,11 +140,25 @@
 
                 <div class="search-bar-container">
 
-                    <input
-                        type="text"
-                        placeholder="Search cluster name..."
-                        class="search-input"
-                    >
+                    <div class="history-search-wrapper">
+
+                        <input
+                            type="text"
+                            placeholder="Search cluster name..."
+                            class="search-input"
+                        >
+
+                        <button
+                            type="button"
+                            class="history-search-clear"
+                            onclick="clearHistorySearch()"
+                            aria-label="Clear search"
+                            title="Clear search"
+                        >
+                            <i class="fas fa-xmark"></i>
+                        </button>
+
+                    </div>
 
                 </div>
 

@@ -1,6 +1,7 @@
 from database.database import SessionLocal
 
 from database.models import PredictionHistory
+from database.models import User
 from sqlalchemy import func
 
 
@@ -10,7 +11,10 @@ class HistoryService:
         self,
         guest_data: dict,
         prediction_result: dict,
-        cluster_name: str
+        cluster_name: str,
+        user_id: int = None,
+        top_recommendation: str = None,
+        operational_focus: str = None
     ):
 
         database = SessionLocal()
@@ -58,6 +62,12 @@ class HistoryService:
                         "cluster_confidence"
                     ]
                 ),
+
+                user_id=user_id,
+
+                top_recommendation=top_recommendation,
+
+                operational_focus=operational_focus,
 
                 **cleaned_guest_data
             )
@@ -164,7 +174,12 @@ class HistoryService:
             results = (
 
                 database.query(
-                    PredictionHistory
+                    PredictionHistory,
+                    User.name
+                )
+                .outerjoin(
+                    User,
+                    PredictionHistory.user_id == User.id
                 )
 
                 .order_by(
@@ -176,9 +191,12 @@ class HistoryService:
 
             history = []
 
-            for row in results:
+            for row, user_name in results:
 
                 history.append({
+
+                    "user_name":
+                        user_name or "Unknown User",
 
                     "cluster_name":
                         row.cluster_name,
@@ -194,7 +212,15 @@ class HistoryService:
                     "created_at":
                         str(
                             row.created_at
-                        )
+                        ),
+
+                    "top_recommendation":
+                        row.top_recommendation
+                        or "N/A",
+
+                    "operational_focus":
+                        row.operational_focus
+                        or "N/A"
                 })
 
             return history

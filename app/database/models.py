@@ -35,6 +35,18 @@ class PredictionHistory(Base):
         Float
     )
 
+    user_id = Column(
+        Integer
+    )
+
+    top_recommendation = Column(
+        String
+    )
+
+    operational_focus = Column(
+        String
+    )
+
     restaurant_visits = Column(
         Float
     )
