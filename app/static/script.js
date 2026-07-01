@@ -185,6 +185,13 @@ async function predictCluster() {
 
         displayResult(data);
 
+        localStorage.setItem(
+
+            "refresh_ai_summary",
+
+            "true"
+        );
+
         clearPredictionForm();
 
     } catch (error) {
@@ -338,6 +345,36 @@ function displayResult(data) {
                     .join("")}
 
             </ul>
+
+        </div>
+
+        <div class="result-section ai-analysis-section">
+
+            <h3>
+
+                AI Behavioral Analysis
+
+            </h3>
+
+            <div class="ai-analysis-card">
+
+                <i
+                    class="fas fa-robot ai-icon"
+                ></i>
+
+                <p>
+
+                    ${
+
+                        data.ai_behavior_analysis ||
+
+                        "AI behavioral analysis is currently unavailable."
+
+                    }
+
+                </p>
+
+            </div>
 
         </div>
     `;

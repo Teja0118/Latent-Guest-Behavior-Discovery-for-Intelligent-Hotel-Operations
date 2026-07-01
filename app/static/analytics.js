@@ -6,6 +6,8 @@ async function loadAnalytics() {
 
     await loadSummary();
 
+    await loadAISummary();
+
     await loadOperationalKPIs();
 
     await loadClusterDistribution();
@@ -90,6 +92,63 @@ async function loadSummary() {
 
         </div>
     `;
+}
+
+async function loadAISummary() {
+
+    try {
+
+        const token =
+
+            localStorage.getItem(
+                "access_token"
+            );
+
+        const response =
+            await fetch(
+
+                "/analytics/ai-summary",
+
+                {
+
+                    headers: {
+
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        document.getElementById(
+
+            "ai-summary"
+
+        ).innerHTML =
+
+            data.summary;
+
+    }
+
+    catch (error) {
+
+        console.error(
+
+            "AI Summary Error:",
+
+            error
+        );
+
+        document.getElementById(
+
+            "ai-summary"
+
+        ).innerHTML =
+
+            "Unable to generate AI summary.";
+    }
 }
 
 async function loadClusterDistribution() {
@@ -289,10 +348,21 @@ async function loadRecentPredictions() {
 
 loadAnalytics();
 
-setInterval(
-    loadAnalytics,
-    10000
-);
+if (
+
+    localStorage.getItem(
+        "refresh_ai_summary"
+    ) === "true"
+
+) {
+
+    loadAISummary();
+
+    localStorage.removeItem(
+        "refresh_ai_summary"
+    );
+
+}
 
 function formatTimestamp(timestamp) {
 

@@ -131,3 +131,24 @@ Premium Family Business
   "service_complaint_count": 0
 }
 Expected: Premium Family Business Guests
+Wellness Luxury Guests
+{
+  "restaurant_visits": 3,
+  "restaurant_spend_usd": 120,
+  "room_service_orders": 1,
+  "room_service_spend_usd": 40,
+  "bar_lounge_visits": 1,
+  "spa_treatments_count": 15,
+  "spa_spend_usd": 2200,
+  "gym_checkins_count": 18,
+  "pool_beach_visits_count": 12,
+  "activity_bookings_count": 0,
+  "kids_club_sessions": 0,
+  "tour_bookings_count": 0,
+  "business_center_hours": 0,
+  "concierge_requests_count": 0,
+  "transport_requests_count": 0,
+  "laundry_requests_count": 0,
+  "special_requests_count": 1,
+  "service_complaint_count": 0
+}

@@ -322,3 +322,94 @@ input[type=number] {
 
     line-height: 1.7;
 }
+
+/* ---------- AI Behavioral Analysis ---------- */
+
+.ai-analysis-section {
+
+    margin-top: 28px;
+}
+
+.ai-analysis-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    background: #f8fafc;
+
+    border-left: 5px solid #7c3aed;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    line-height: 1.8;
+
+    color: #334155;
+
+    box-shadow:
+
+        0 3px 12px rgba(
+            0,
+            0,
+            0,
+            0.05
+        );
+}
+
+.ai-icon {
+
+    color: #7c3aed;
+
+    font-size: 24px;
+
+    margin-top: 3px;
+
+    flex-shrink: 0;
+}
+
+.ai-analysis-card p {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    text-align: justify;
+}
+
+/* ---------- AI Behavioral Analysis (Dark Mode) ---------- */
+
+body.dark-mode .ai-analysis-card {
+
+    background: #1e293b;
+
+    border-left: 5px solid #a78bfa;
+
+    color: #e2e8f0;
+
+    box-shadow:
+        0 4px 16px rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+}
+
+body.dark-mode .ai-analysis-card p {
+
+    color: #e2e8f0;
+}
+
+body.dark-mode .ai-icon {
+
+    color: #c4b5fd;
+}
+
+body.dark-mode .ai-analysis-section h3 {
+
+    color: #f8fafc;
+}

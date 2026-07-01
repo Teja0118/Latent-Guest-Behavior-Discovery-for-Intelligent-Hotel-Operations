@@ -17,12 +17,20 @@ from api.services.history_service import (
     HistoryService
 )
 
+from api.services.analytics_ai_service import (
+    AnalyticsAIService
+)
+
 
 router = APIRouter()
 
 analytics_service = AnalyticsService()
 
 history_service = HistoryService()
+
+analytics_ai_service = (
+    AnalyticsAIService()
+)
 
 
 @router.get("/analytics/summary")
@@ -232,4 +240,20 @@ def get_confidence_by_cluster(
     return (
         analytics_service
         .get_confidence_by_cluster()
+    )
+
+@router.get(
+    "/analytics/ai-summary"
+)
+def get_ai_summary(
+
+    current_user=Depends(
+        get_current_user
+    )
+):
+
+    return (
+
+        analytics_ai_service
+        .generate_summary()
     )
