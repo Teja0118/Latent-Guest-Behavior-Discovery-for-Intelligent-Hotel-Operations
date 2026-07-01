@@ -101,13 +101,15 @@ function renderTable() {
 
             <tr>
 
-                <th>
-                    Cluster
-                </th>
+                <th>User</th>
 
-                <th>
-                    Timestamp
-                </th>
+                <th>Cluster</th>
+
+                <th>Top Recommendation</th>
+
+                <th>Operational Focus</th>
+
+                <th>Timestamp</th>
 
             </tr>
 
@@ -120,7 +122,19 @@ function renderTable() {
                 <tr>
 
                     <td>
+                        ${item.user_name}
+                    </td>
+
+                    <td>
                         ${item.cluster_name}
+                    </td>
+
+                    <td>
+                        ${item.top_recommendation}
+                    </td>
+
+                    <td>
+                        ${item.operational_focus}
                     </td>
 
                     <td>
@@ -134,8 +148,8 @@ function renderTable() {
             `).join("")}
 
         </tbody>
-    `;
 
+    `;
     renderPagination();
 }
 
@@ -237,7 +251,13 @@ function setupSearch() {
             filteredPredictions =
                 allPredictions.filter(
                     item =>
-                        item.cluster_name
+                        [
+                            item.user_name,
+                            item.cluster_name,
+                            item.top_recommendation,
+                            item.operational_focus
+                        ]
+                        .join(" ")
                         .toLowerCase()
                         .includes(query)
                 );

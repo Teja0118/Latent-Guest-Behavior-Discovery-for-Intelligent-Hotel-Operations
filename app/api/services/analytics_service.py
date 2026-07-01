@@ -312,11 +312,7 @@ class AnalyticsService:
                     .lower()
                 )
 
-                if "luxury" in cluster:
-
-                    dining += row.count
-
-                elif "wellness" in cluster:
+                if "wellness" in cluster:
 
                     wellness += row.count
 
@@ -327,6 +323,10 @@ class AnalyticsService:
                 elif "business" in cluster:
 
                     business += row.count
+
+                elif "luxury dining" in cluster:
+
+                    dining += row.count
 
             def calculate(value):
 
