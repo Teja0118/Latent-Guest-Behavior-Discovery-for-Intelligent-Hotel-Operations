@@ -471,6 +471,11 @@
             0.08
         );
 
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .ai-summary-header {
@@ -539,6 +544,69 @@
     color: #64748b;
 
     font-style: italic;
+}
+
+/* =====================================
+   AI Executive Summary - Dark Mode
+===================================== */
+
+body.dark-mode .ai-summary-card {
+
+    background: #1f2937;
+
+    border-top: 5px solid #8b5cf6;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.35);
+
+}
+
+body.dark-mode .ai-summary-header {
+
+    border-bottom: 1px solid #374151;
+
+}
+
+body.dark-mode .ai-summary-header i {
+
+    background: rgba(139,92,246,0.18);
+
+    color: #a78bfa;
+
+}
+
+body.dark-mode .ai-summary-header h2 {
+
+    color: #f8fafc;
+
+}
+
+body.dark-mode #ai-summary {
+
+    color: #d1d5db;
+
+}
+
+body.dark-mode .ai-loading {
+
+    color: #9ca3af;
+
+}
+
+/* ==============================
+   Analytics Page - Dark Mode
+================================= */
+
+body.dark-mode .page-header h1 {
+
+    color: #f8fafc;
+
+}
+
+body.dark-mode .page-header p {
+
+    color: #cbd5e1;
+
 }
 
 /* ---------------- RESPONSIVE ---------------- */

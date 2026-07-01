@@ -63,8 +63,6 @@ Top Cluster:
 Guest Categories:
 {summary["total_clusters"]}
 
-Average Confidence:
-{summary["average_confidence"]}
 
 Operational Demand:
 
