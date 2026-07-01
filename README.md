@@ -39,7 +39,6 @@ This project addresses the problem by:
 
 * Predict guest segment using activity data
 * Real-time cluster prediction
-* Cluster confidence reporting
 * Personalized guest classification
 
 ### Recommendation Engine
@@ -57,7 +56,6 @@ This project addresses the problem by:
 ### Analytics Dashboard
 
 * Total predictions summary
-* Average confidence tracking
 * Cluster distribution visualization
 * Recent prediction monitoring
 
@@ -307,7 +305,6 @@ Stores:
 
 * Cluster ID
 * Cluster Name
-* Confidence Score
 * Guest Activity Features
 * Prediction Timestamp
 

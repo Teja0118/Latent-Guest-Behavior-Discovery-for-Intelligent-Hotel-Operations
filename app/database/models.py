@@ -31,10 +31,6 @@ class PredictionHistory(Base):
         String
     )
 
-    confidence = Column(
-        Float
-    )
-
     user_id = Column(
         Integer
     )

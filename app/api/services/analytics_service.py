@@ -16,15 +16,6 @@ class AnalyticsService:
                 ).count()
             )
 
-            average_confidence = (
-
-                database.query(
-                    func.avg(
-                        PredictionHistory.confidence
-                    )
-                ).scalar()
-            )
-
             top_cluster_result = (
 
                 database.query(
@@ -57,12 +48,6 @@ class AnalyticsService:
 
                 "total_predictions":
                     total_predictions,
-
-                "average_confidence":
-                    round(
-                        average_confidence or 0,
-                        2
-                    ),
 
                 "total_clusters":
                     total_clusters,
@@ -117,10 +102,13 @@ class AnalyticsService:
             database.close()
 
     def get_recent_predictions(self):
+
         database = SessionLocal()
 
         try:
+
             results = (
+
                 database.query(
                     PredictionHistory
                 )
@@ -134,61 +122,17 @@ class AnalyticsService:
             recent_predictions = []
 
             for row in results:
+
                 recent_predictions.append({
-                    "cluster_name": row.cluster_name,
-                    "confidence": round(
-                        float(row.confidence),
-                        2
-                    ),
-                    "created_at": str(row.created_at)
+
+                    "cluster_name":
+                        row.cluster_name,
+
+                    "created_at":
+                        str(row.created_at)
                 })
+
             return recent_predictions
-        
-        finally:
-            database.close()
-
-    def get_prediction_trends(self):
-
-        database = SessionLocal()
-
-        try:
-
-            results = (
-
-                database.query(
-                    PredictionHistory
-                )
-                .order_by(
-                    PredictionHistory.created_at.desc()
-                )
-                .limit(10)
-                .all()
-            )
-
-            results.reverse()
-
-            trend_data = []
-
-            for index, row in enumerate(
-                results,
-                start=1
-            ):
-
-                trend_data.append({
-
-                    "label":
-                        f"P{index}",
-
-                    "confidence":
-                        round(
-                            float(
-                                row.confidence
-                            ),
-                            2
-                        )
-                })
-
-            return trend_data
 
         finally:
 
@@ -408,7 +352,6 @@ class AnalyticsService:
 
             database.close()
 
-    def get_confidence_by_cluster(self):
 
         database = SessionLocal()
 

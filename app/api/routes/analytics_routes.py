@@ -73,19 +73,6 @@ def get_recent_predictions(
         .get_recent_predictions()
     )
 
-@router.get(
-    "/analytics/prediction-trends"
-)
-def get_prediction_trends(
-    current_user=Depends(
-        get_current_user
-    )
-):
-
-    return (
-        analytics_service
-        .get_prediction_trends()
-    )
 
 @router.get(
     "/analytics/cluster-insights"
@@ -227,20 +214,6 @@ def get_segment_popularity(
         .get_segment_popularity()
     )
 
-@router.get(
-    "/analytics/confidence-by-cluster"
-)
-def get_confidence_by_cluster(
-
-    current_user=Depends(
-        get_current_user
-    )
-):
-
-    return (
-        analytics_service
-        .get_confidence_by_cluster()
-    )
 
 @router.get(
     "/analytics/ai-summary"

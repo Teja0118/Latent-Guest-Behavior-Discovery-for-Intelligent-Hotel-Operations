@@ -84,13 +84,6 @@ def predict_cluster(
             ]
         )
 
-        confidence = (
-
-            prediction_result[
-                "cluster_confidence"
-            ]
-        )
-
         cluster_details = (
 
             recommendation_service
@@ -176,22 +169,6 @@ def predict_cluster(
             "predicted_cluster":
 
                 cluster_id,
-
-            "cluster_confidence":
-
-                confidence,
-
-            "cluster_assignment_strength":
-
-                prediction_result[
-                    "cluster_assignment_strength"
-                ],
-
-            "confidence_band":
-
-                prediction_result[
-                    "confidence_band"
-                ],
 
             "cluster_name":
 

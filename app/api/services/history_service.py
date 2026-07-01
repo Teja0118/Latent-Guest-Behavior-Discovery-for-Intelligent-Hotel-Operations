@@ -57,12 +57,6 @@ class HistoryService:
 
                 cluster_name=cluster_name,
 
-                confidence=float(
-                    prediction_result[
-                        "cluster_confidence"
-                    ]
-                ),
-
                 user_id=user_id,
 
                 top_recommendation=top_recommendation,
@@ -99,14 +93,6 @@ class HistoryService:
                 database.query(
                     PredictionHistory
                 ).count()
-            )
-
-            average_confidence = (
-                database.query(
-                    func.avg(
-                        PredictionHistory.confidence
-                    )
-                ).scalar()
             )
 
             top_cluster = (
@@ -153,12 +139,6 @@ class HistoryService:
                     )
                     if latest_prediction
                     else "N/A",
-
-                "average_confidence":
-                    round(
-                        average_confidence or 0,
-                        2
-                    )
             }
 
         finally:
@@ -200,14 +180,6 @@ class HistoryService:
 
                     "cluster_name":
                         row.cluster_name,
-
-                    "confidence":
-                        round(
-                            float(
-                                row.confidence
-                            ),
-                            2
-                        ),
 
                     "created_at":
                         str(
